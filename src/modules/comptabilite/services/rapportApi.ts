@@ -1,4 +1,4 @@
-// src/modules/comptabilite/services/rapportApi.ts - VERSION CORRIGÉE
+// src/modules/comptabilite/services/rapportApi.ts - 
 import axios from '../../../core/config/axios';
 import type { 
   RapportBilan, 
@@ -8,6 +8,7 @@ import type {
 } from '../types';
 
 const API_BASE_URL = '/comptabilite';
+
 
 
 const extractObject = (response: any): any => {

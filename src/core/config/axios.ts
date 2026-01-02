@@ -2,7 +2,7 @@ import axios from 'axios';
 import { authApi } from '../auth/services/authApi';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3001/api',
+  baseURL: 'https://omniserves-experts-backend.vercel.app/api',
   timeout: 10000,
 });
 
