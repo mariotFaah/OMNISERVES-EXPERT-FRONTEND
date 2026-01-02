@@ -9,7 +9,6 @@ import {
   FiShield,
   FiLock,
   FiMail,
-  
 } from 'react-icons/fi';
 import './LoginPage.css';
 
@@ -100,35 +99,37 @@ export const LoginPage: React.FC = () => {
 
               <div className="form-group">
                 <label htmlFor="email" className="form-label">
-                  <FiMail className="input-icon" />
                   Email
                 </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="form-input"
-                  placeholder="Entrez votre email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  autoComplete="email"
-                  disabled={isSubmitting}
-                />
+                <div className="input-with-icon">
+                  <FiMail className="input-icon-left" />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    className="form-input with-icon"
+                    placeholder="Entrez votre email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    autoComplete="email"
+                    disabled={isSubmitting}
+                  />
+                </div>
               </div>
 
               <div className="form-group">
                 <label htmlFor="password" className="form-label">
-                  <FiLock className="input-icon" />
                   Mot de passe
                 </label>
-                <div className="password-input-container">
+                <div className="input-with-icon">
+                  <FiLock className="input-icon-left" />
                   <input
                     id="password"
                     name="password"
                     type={showPassword ? 'text' : 'password'}
                     required
-                    className="form-input"
+                    className="form-input with-icon"
                     placeholder="Entrez votre mot de passe"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -156,7 +157,6 @@ export const LoginPage: React.FC = () => {
                     onChange={(e) => setRememberMe(e.target.checked)}
                     disabled={isSubmitting}
                   />
-                  
                   <span className="remember-text">Se souvenir de moi</span>
                 </label>
                 <a href="#" className="forgot-password" onClick={(e) => {

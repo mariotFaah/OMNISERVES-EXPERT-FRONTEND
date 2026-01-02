@@ -153,6 +153,9 @@
   font-size: 0.95rem;
   border-left: 4px solid #c62828;
   animation: fadeIn 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 @keyframes fadeIn {
@@ -172,6 +175,39 @@
   font-size: 0.95rem;
 }
 
+/* Container pour l'input avec icône */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Icône à gauche de l'input */
+.input-icon-left {
+  position: absolute;
+  left: 16px;
+  color: #666;
+  font-size: 1.2rem;
+  z-index: 1;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+/* Input avec icône à gauche */
+.form-input.with-icon {
+  padding-left: 50px !important;
+  padding-right: 50px;
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  box-sizing: border-box;
+}
+
+/* Input standard (sans icône) */
 .form-input {
   width: 100%;
   padding: 16px;
@@ -183,32 +219,37 @@
   box-sizing: border-box;
 }
 
-.form-input:focus {
+.form-input:focus,
+.form-input.with-icon:focus {
   outline: none;
   border-color: #1a237e;
   background: white;
   box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
 }
 
-.form-input:disabled {
+/* Quand l'input est focus, change la couleur de l'icône */
+.form-input.with-icon:focus ~ .input-icon-left {
+  color: #1a237e;
+}
+
+.form-input:disabled,
+.form-input.with-icon:disabled {
   background: #f5f5f5;
   cursor: not-allowed;
   opacity: 0.7;
 }
 
-.form-input::placeholder {
+.form-input::placeholder,
+.form-input.with-icon::placeholder {
   color: #999;
 }
 
-/* Input mot de passe */
-.password-input-container {
-  position: relative;
-}
-
-.password-input-container .form-input {
+/* Pour l'input password, ajuster le padding à droite pour le bouton toggle */
+.input-with-icon .form-input.with-icon {
   padding-right: 50px;
 }
 
+/* Ajuster la position du bouton toggle pour l'input password */
 .password-toggle {
   position: absolute;
   right: 12px;
@@ -227,6 +268,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
+  z-index: 2;
 }
 
 .password-toggle:hover:not(:disabled) {
@@ -237,6 +279,17 @@
 .password-toggle:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Animation pour l'icône quand l'input est focus */
+.form-input.with-icon:focus ~ .input-icon-left {
+  animation: iconPulse 0.3s ease;
+}
+
+@keyframes iconPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 /* Options */
@@ -450,8 +503,19 @@
     align-items: flex-start;
   }
   
-  .form-input {
+  .form-input,
+  .form-input.with-icon {
     padding: 14px;
+  }
+  
+  .form-input.with-icon {
+    padding-left: 45px !important;
+    padding-right: 45px;
+  }
+  
+  .input-icon-left {
+    left: 14px;
+    font-size: 1.1rem;
   }
 }
 
@@ -486,5 +550,26 @@
 
   .login-subtitle {
     font-size: 0.85rem;
+  }
+  
+  .form-input,
+  .form-input.with-icon {
+    padding: 12px;
+  }
+  
+  .form-input.with-icon {
+    padding-left: 40px !important;
+    padding-right: 40px;
+  }
+  
+  .input-icon-left {
+    left: 12px;
+    font-size: 1rem;
+  }
+  
+  .password-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 6px;
   }
 }
