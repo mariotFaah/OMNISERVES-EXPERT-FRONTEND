@@ -1,12 +1,17 @@
+// src/core/config/axios.ts
 import axios from 'axios';
 import { authApi } from '../auth/services/authApi';
 
+// ✅ Instance Axios centralisée
 const instance = axios.create({
-  baseURL: 'https://omniserves-experts-backend.vercel.app/api',
-  timeout: 10000,
+  baseURL: 'https://omniserves-experts-backend.vercel.app/api', // Base URL de ton backend
+  timeout: 10000, // 10 secondes max
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
-// Intercepteur pour ajouter le token aux requêtes
+// 🔹 Intercepteur pour ajouter le token automatiquement
 instance.interceptors.request.use(
   (config) => {
     const token = authApi.getToken();
@@ -15,17 +20,15 @@ instance.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Intercepteur pour gérer les erreurs d'authentification
+// 🔹 Intercepteur pour gérer les erreurs 401 (token expiré)
 instance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Token expiré ou invalide
+      console.warn('Token expiré ou invalide, déconnexion en cours...');
       authApi.logout();
       window.location.href = '/login';
     }
