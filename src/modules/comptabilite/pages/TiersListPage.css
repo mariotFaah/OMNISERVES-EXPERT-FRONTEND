@@ -1,0 +1,292 @@
+/* TiersListPage.css */
+
+.tiers-page {
+  padding: 24px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.tiers-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tiers-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.tiers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tiers-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+}
+
+.tiers-subtitle {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.tiers-add-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tiers-add-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.tiers-table-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tiers-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tiers-table th {
+  background-color: #f8f9fa;
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 1px solid #dee2e6;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tiers-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #e9ecef;
+  color: #495057;
+  vertical-align: top;
+}
+
+.tiers-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.tiers-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.tiers-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tiers-actions {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.tiers-edit-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tiers-edit-btn:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+}
+
+.tiers-empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: #6c757d;
+  font-style: italic;
+  background-color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tiers-page {
+    padding: 16px;
+  }
+  
+  .tiers-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .tiers-add-btn {
+    align-self: flex-start;
+  }
+  
+  .tiers-table-container {
+    overflow-x: auto;
+  }
+  
+  .tiers-table {
+    min-width: 600px;
+  }
+  
+  .tiers-table th,
+  .tiers-table td {
+    padding: 12px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tiers-title {
+    font-size: 24px;
+  }
+  
+  .tiers-table {
+    font-size: 13px;
+  }
+  
+  .tiers-edit-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .tiers-add-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+/* Animation pour le chargement */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tiers-table-container {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Styles pour les différents types de tiers */
+.tiers-table td:nth-child(2) { /* Colonne Type */
+  font-weight: 500;
+}
+
+.tiers-table td:nth-child(2):contains("Client") {
+  color: #007bff;
+}
+
+.tiers-table td:nth-child(2):contains("Fournisseur") {
+  color: #28a745;
+}
+
+/* Amélioration de la lisibilité */
+.tiers-table td:nth-child(1) { /* Nom */
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.tiers-table td:nth-child(3), /* Email */
+.tiers-table td:nth-child(4) { /* Téléphone */
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+}
+
+/* Styles pour les icônes dans les boutons */
+.btn-icon {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.tiers-edit-btn .btn-icon {
+  margin-right: 0;
+}
+
+.tiers-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tiers-add-btn:hover {
+  background-color: #106ebe;
+}
+
+.tiers-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  background-color: #ffb900;
+  color: #323130;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 40px;
+  min-height: 36px;
+}
+
+.tiers-edit-btn:hover {
+  background-color: #f2aa00;
+}
+
+/* Assurez-vous que les icônes sont visibles */
+.tiers-edit-btn svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.tiers-add-btn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}

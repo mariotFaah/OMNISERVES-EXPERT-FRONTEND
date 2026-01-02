@@ -1,0 +1,29 @@
+# frontend/Dockerfile.dev
+FROM node:20-alpine as builder
+
+WORKDIR /app
+
+# Copier les fichiers de dépendances
+COPY package.json package-lock.json* ./
+
+# Installer TOUTES les dépendances (dev incluses)
+RUN npm config set registry https://registry.npmmirror.com/ && \
+    npm ci --legacy-peer-deps
+
+# Copier le code source
+COPY . .
+
+# Étape de développement - pas de build, on utilise Vite en mode dev
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copier les node_modules depuis l'étape builder
+COPY --from=builder /app/node_modules ./node_modules
+
+# Copier le code source
+COPY . .
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

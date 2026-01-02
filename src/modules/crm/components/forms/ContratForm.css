@@ -1,0 +1,342 @@
+/* src/modules/crm/components/forms/ContratForm.css */
+
+/* Container principal Microsoft Style */
+.ms-crm-container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Header Microsoft Style */
+.ms-crm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: white;
+  border-bottom: 1px solid #e1e5e9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ms-crm-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ms-crm-back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #d1d1d1;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #323130;
+  transition: all 0.2s ease;
+}
+
+.ms-crm-back-button:hover {
+  background: #f3f2f1;
+  border-color: #8a8886;
+}
+
+.ms-crm-back-icon {
+  font-size: 16px;
+}
+
+.ms-crm-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ms-crm-page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #323130;
+  margin: 0;
+}
+
+.ms-crm-header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Boutons Microsoft Style */
+.ms-crm-btn {
+  padding: 8px 16px;
+  border: 1px solid;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.ms-crm-btn-primary {
+  background: #0078d4;
+  border-color: #0078d4;
+  color: white;
+}
+
+.ms-crm-btn-primary:hover:not(:disabled) {
+  background: #106ebe;
+  border-color: #106ebe;
+}
+
+.ms-crm-btn-primary:disabled {
+  background: #f3f2f1;
+  border-color: #f3f2f1;
+  color: #a19f9d;
+  cursor: not-allowed;
+}
+
+.ms-crm-btn-secondary {
+  background: white;
+  border-color: #8a8886;
+  color: #323130;
+}
+
+.ms-crm-btn-secondary:hover {
+  background: #f3f2f1;
+  border-color: #323130;
+}
+
+.ms-crm-btn-block {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Content Area */
+.ms-crm-content {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.ms-crm-form-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Cards Microsoft Style */
+.ms-crm-card {
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ms-crm-card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f3f2f1;
+}
+
+.ms-crm-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #323130;
+  margin: 0;
+}
+
+.ms-crm-card-content {
+  padding: 20px;
+}
+
+/* Form Elements */
+.ms-crm-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.ms-crm-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-crm-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #323130;
+}
+
+.ms-crm-required {
+  color: #d13438;
+}
+
+.ms-crm-input,
+.ms-crm-select,
+.ms-crm-textarea {
+  padding: 8px 12px;
+  border: 1px solid #8a8886;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #323130;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.ms-crm-input:focus,
+.ms-crm-select:focus,
+.ms-crm-textarea:focus {
+  outline: none;
+  border-color: #0078d4;
+  box-shadow: 0 0 0 1px #0078d4;
+}
+
+.ms-crm-input:disabled,
+.ms-crm-select:disabled {
+  background: #f3f2f1;
+  color: #a19f9d;
+}
+
+.ms-crm-textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+/* Currency Input */
+.ms-crm-currency-input {
+  position: relative;
+}
+
+.ms-crm-currency-input .ms-crm-input {
+  padding-right: 40px;
+}
+
+.ms-crm-currency-symbol {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #605e5c;
+  font-size: 14px;
+}
+
+/* Summary Sidebar */
+.ms-crm-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f2f1;
+}
+
+.ms-crm-summary-item:last-child {
+  border-bottom: none;
+}
+
+.ms-crm-summary-label {
+  font-size: 14px;
+  color: #605e5c;
+}
+
+.ms-crm-summary-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #323130;
+}
+
+.ms-crm-ttc {
+  color: #107c10;
+  font-weight: 700;
+}
+
+/* Loading States */
+.ms-crm-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 60px 24px;
+  color: #605e5c;
+  font-size: 16px;
+}
+
+.ms-crm-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #f3f2f1;
+  border-top: 2px solid #0078d4;
+  border-radius: 50%;
+  animation: ms-crm-spin 1s linear infinite;
+}
+
+.ms-crm-spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: ms-crm-spin 1s linear infinite;
+}
+
+@keyframes ms-crm-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error States */
+.ms-crm-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #fef7f7;
+  border: 1px solid #f4d5d5;
+  border-radius: 4px;
+  color: #d13438;
+  font-size: 14px;
+}
+
+.ms-crm-error-icon {
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .ms-crm-form-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .ms-crm-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ms-crm-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .ms-crm-header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .ms-crm-content {
+    padding: 16px;
+  }
+  
+  .ms-crm-card-content {
+    padding: 16px;
+  }
+  
+  .ms-crm-header {
+    padding: 12px 16px;
+  }
+}

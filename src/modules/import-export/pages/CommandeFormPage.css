@@ -1,0 +1,583 @@
+/* src/modules/import-export/pages/CommandeFormPage.css */
+
+/* ===== STYLES DE BASE MICROSOFT ===== */
+.ms-crm-container {
+  min-height: 100vh;
+  background: #faf9f8;
+}
+
+/* ===== HEADER STYLES ===== */
+.ms-crm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #edebe9;
+}
+
+.ms-crm-header-left {
+  flex: 1;
+}
+
+.ms-crm-title-section h1 {
+  margin: 0 0 4px 0;
+  font-size: 32px;
+  font-weight: 600;
+  color: #323130;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ms-crm-subtitle {
+  margin: 0;
+  color: #605e5c;
+  font-size: 14px;
+}
+
+.ms-crm-header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ===== CONTENU PRINCIPAL ===== */
+.ms-crm-content {
+  padding: 24px 32px;
+  max-width: 100%;
+}
+
+/* ===== CARTE PRINCIPALE ===== */
+.ms-crm-card {
+  background: #ffffff;
+  border: 1px solid #edebe9;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+/* ===== FORMULAIRE ===== */
+.ms-crm-form {
+  padding: 0;
+}
+
+/* ===== SECTIONS DU FORMULAIRE ===== */
+.ms-crm-form-section {
+  padding: 24px;
+  border-bottom: 1px solid #edebe9;
+}
+
+.ms-crm-form-section:last-child {
+  border-bottom: none;
+}
+
+.ms-crm-section-header {
+  margin-bottom: 24px;
+}
+
+.ms-crm-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #323130;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-icon {
+  color: #0078d4;
+}
+
+/* ===== GRID DE FORMULAIRE ===== */
+.ms-crm-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ===== GROUPES DE FORMULAIRE ===== */
+.ms-crm-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-crm-form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #323130;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ms-crm-form-label.required:after {
+  content: '*';
+  color: #d13438;
+  margin-left: 4px;
+}
+
+.form-label-icon {
+  font-size: 14px;
+  color: #605e5c;
+  flex-shrink: 0;
+}
+
+.statut-form-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Icônes spécifiques pour chaque statut */
+.ms-crm-form-select[value="brouillon"] + .statut-form-icon {
+  color: #ffb900;
+}
+
+.ms-crm-form-select[value="confirmée"] + .statut-form-icon {
+  color: #107c10;
+}
+
+.ms-crm-form-select[value="expédiée"] + .statut-form-icon {
+  color: #0078d4;
+}
+
+.ms-crm-form-select[value="livrée"] + .statut-form-icon {
+  color: #0099bc;
+}
+
+.ms-crm-form-select[value="annulée"] + .statut-form-icon {
+  color: #d13438;
+}
+
+.ms-crm-form-hint {
+  font-size: 12px;
+  color: #605e5c;
+  margin-top: 2px;
+}
+
+/* ===== INPUTS ET SELECTS ===== */
+.ms-crm-form-input,
+.ms-crm-form-select {
+  padding: 8px 12px;
+  border: 1px solid #8a8886;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  height: 36px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.ms-crm-form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23605e5c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 36px;
+}
+
+.ms-crm-form-input:focus,
+.ms-crm-form-select:focus {
+  outline: none;
+  border-color: #0078d4;
+  box-shadow: 0 0 0 1px #0078d4;
+}
+
+/* ===== LIGNES DE COMMANDE ===== */
+.ms-crm-lignes-container {
+  border: 1px solid #edebe9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ms-crm-ligne-header {
+  display: grid;
+  grid-template-columns: 180px 1fr 100px 120px 80px 120px 60px;
+  background: #faf9f8;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #605e5c;
+  border-bottom: 1px solid #edebe9;
+}
+
+.ms-crm-ligne-item {
+  display: grid;
+  grid-template-columns: 180px 1fr 100px 120px 80px 120px 60px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #edebe9;
+  align-items: center;
+  gap: 12px;
+}
+
+.ms-crm-ligne-item:last-child {
+  border-bottom: none;
+}
+
+.ms-crm-ligne-item:hover {
+  background: #f8f9fa;
+}
+
+.ms-crm-ligne-select,
+.ms-crm-ligne-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #8a8886;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  height: 32px;
+  box-sizing: border-box;
+}
+
+.ms-crm-ligne-select:focus,
+.ms-crm-ligne-input:focus {
+  outline: none;
+  border-color: #0078d4;
+  box-shadow: 0 0 0 1px #0078d4;
+}
+
+.ms-crm-ligne-montant {
+  font-weight: 600;
+  color: #323130;
+  font-size: 14px;
+  text-align: right;
+}
+
+.ms-crm-ligne-actions {
+  padding: 16px;
+  background: #faf9f8;
+  border-top: 1px solid #edebe9;
+}
+
+/* ===== BOUTONS ===== */
+.ms-crm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.5;
+  min-height: 32px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.ms-crm-btn-primary {
+  background: #0078d4;
+  color: #ffffff;
+  border-color: #0078d4;
+}
+
+.ms-crm-btn-primary:hover {
+  background: #106ebe;
+  border-color: #106ebe;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 120, 212, 0.3);
+}
+
+.ms-crm-btn-secondary {
+  background: #ffffff;
+  color: #323130;
+  border-color: #8a8886;
+}
+
+.ms-crm-btn-secondary:hover {
+  background: #f3f2f1;
+  border-color: #323130;
+}
+
+.ms-crm-btn-warning {
+  background: #ffb900;
+  color: #323130;
+  border-color: #ffb900;
+}
+
+.ms-crm-btn-warning:hover {
+  background: #f2aa00;
+  border-color: #f2aa00;
+}
+
+.ms-crm-btn-danger {
+  background: #d13438;
+  color: #ffffff;
+  border-color: #d13438;
+}
+
+.ms-crm-btn-danger:hover {
+  background: #c02c30;
+  border-color: #c02c30;
+}
+
+.ms-crm-btn-icon {
+  padding: 6px;
+  min-width: 32px;
+  min-height: 32px;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.ms-crm-btn-icon .ms-crm-icon {
+  font-size: 16px;
+  margin: 0;
+}
+
+.ms-crm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.ms-crm-btn:focus {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+
+/* ===== TOTAUX ===== */
+.ms-crm-totaux-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 600px;
+  margin-left: auto;
+}
+
+.ms-crm-total-item {
+  background: #faf9f8;
+  border: 1px solid #edebe9;
+  border-radius: 4px;
+  padding: 16px;
+  text-align: center;
+}
+
+.ms-crm-total-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #605e5c;
+  margin-bottom: 8px;
+}
+
+.ms-crm-total-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #323130;
+}
+
+.ms-crm-total-tva {
+  color: #0078d4;
+}
+
+.ms-crm-total-ttc {
+  color: #107c10;
+}
+
+/* ===== ACTIONS DU FORMULAIRE ===== */
+.ms-crm-form-actions {
+  padding: 24px;
+  border-top: 1px solid #edebe9;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: #faf9f8;
+  border-radius: 0 0 6px 6px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+  .ms-crm-ligne-header,
+  .ms-crm-ligne-item {
+    grid-template-columns: 160px 1fr 90px 110px 70px 110px 50px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ms-crm-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ms-crm-totaux-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .ms-crm-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px;
+  }
+  
+  .ms-crm-header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .ms-crm-content {
+    padding: 16px;
+  }
+  
+  .ms-crm-form-section {
+    padding: 16px;
+  }
+  
+  .ms-crm-ligne-header {
+    display: none;
+  }
+  
+  .ms-crm-ligne-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .ms-crm-ligne-col-article,
+  .ms-crm-ligne-col-description,
+  .ms-crm-ligne-col-qte,
+  .ms-crm-ligne-col-prix,
+  .ms-crm-ligne-col-tva,
+  .ms-crm-ligne-col-montant,
+  .ms-crm-ligne-col-action {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .ms-crm-ligne-col-article:before {
+    content: 'Article:';
+    font-size: 12px;
+    font-weight: 600;
+    color: #605e5c;
+  }
+  
+  .ms-crm-ligne-col-description:before {
+    content: 'Description:';
+    font-size: 12px;
+    font-weight: 600;
+    color: #605e5c;
+  }
+  
+  .ms-crm-ligne-col-qte:before {
+    content: 'Quantité:';
+    font-size: 12px;
+    font-weight: 600;
+    color: #605e5c;
+  }
+  
+  .ms-crm-ligne-col-prix:before {
+    content: 'Prix Unitaire:';
+    font-size: 12px;
+    font-weight: 600;
+    color: #605e5c;
+  }
+  
+  .ms-crm-ligne-col-tva:before {
+    content: 'TVA %:';
+    font-size: 12px;
+    font-weight: 600;
+    color: #605e5c;
+  }
+  
+  .ms-crm-ligne-col-montant:before {
+    content: 'Montant HT:';
+    font-size: 12px;
+    font-weight: 600;
+    color: #605e5c;
+  }
+  
+  .ms-crm-ligne-col-action:before {
+    content: 'Action:';
+    font-size: 12px;
+    font-weight: 600;
+    color: #605e5c;
+  }
+  
+  .ms-crm-form-actions {
+    flex-direction: column;
+  }
+  
+  .ms-crm-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .ms-crm-form-section {
+    padding: 12px;
+  }
+  
+  .ms-crm-ligne-item {
+    padding: 12px;
+  }
+  
+  .ms-crm-total-value {
+    font-size: 18px;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ms-crm-form-section {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.ms-crm-ligne-item {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* ===== CHARGEMENT ===== */
+.ms-crm-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 32px;
+  gap: 16px;
+}
+
+.ms-crm-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #f3f2f1;
+  border-top: 3px solid #0078d4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Icônes dans les boutons */
+.ms-crm-icon {
+  font-size: 16px;
+}
+
+.action-icon {
+  width: 16px;
+  height: 16px;
+}

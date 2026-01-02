@@ -1,0 +1,746 @@
+/* FactureForm.css - Style Microsoft Sage */
+
+/* Variables de couleur Sage */
+:root {
+  --sage-blue: #0078d4;
+  --sage-blue-dark: #106ebe;
+  --sage-blue-light: #c7e0f4;
+  --sage-green: #107c10;
+  --sage-green-light: #dff6dd;
+  --sage-gray: #f3f2f1;
+  --sage-gray-dark: #8a8886;
+  --sage-gray-light: #faf9f8;
+  --sage-border: #edebe9;
+  --sage-text: #323130;
+  --sage-text-light: #605e5c;
+  --sage-danger: #a4262c;
+  --sage-danger-light: #fde7e9;
+  --sage-warning: #ca5010;
+  --sage-warning-light: #fff4ce;
+  --sage-shadow: 0 2.4px 7.2px rgba(0,0,0,.13), 0 0.8px 2.7px rgba(0,0,0,.11);
+  --sage-radius: 4px;
+}
+
+/* Reset et styles de base */
+.sage-facture-form {
+  font-family: 'Segoe UI', 'Segoe UI Web (West European)', SegoeUI, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+  color: var(--sage-text);
+  background: var(--sage-gray-light);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Loading State */
+.sage-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  gap: 20px;
+}
+
+.sage-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--sage-blue-light);
+  border-top-color: var(--sage-blue);
+  border-radius: 50%;
+  animation: sage-spin 1s linear infinite;
+}
+
+.sage-loading-text {
+  font-size: 16px;
+  color: var(--sage-text-light);
+  font-weight: 400;
+}
+
+@keyframes sage-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* En-tête Sage */
+.sage-header {
+  background: white;
+  border-radius: var(--sage-radius);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--sage-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid var(--sage-blue);
+}
+
+.sage-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sage-header-icon {
+  font-size: 32px;
+  color: var(--sage-blue);
+}
+
+.sage-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.sage-subtitle {
+  font-size: 14px;
+  color: var(--sage-text-light);
+  margin-top: 4px;
+}
+
+.sage-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.sage-header-info {
+  display: flex;
+  gap: 24px;
+}
+
+.sage-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.sage-info-label {
+  font-size: 12px;
+  color: var(--sage-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.sage-info-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sage-text);
+}
+
+.sage-facture-number {
+  color: var(--sage-blue);
+  font-weight: 700;
+}
+
+.sage-statut {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sage-statut-brouillon {
+  background: var(--sage-warning-light);
+  color: var(--sage-warning);
+}
+
+.sage-statut-validee {
+  background: var(--sage-green-light);
+  color: var(--sage-green);
+}
+
+/* Sections génériques */
+.sage-section {
+  background: white;
+  border-radius: var(--sage-radius);
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--sage-shadow);
+  border: 1px solid var(--sage-border);
+}
+
+.sage-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--sage-border);
+}
+
+.sage-section-icon {
+  font-size: 20px;
+  color: var(--sage-blue);
+}
+
+.sage-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin: 0;
+}
+
+/* Section Entreprise et Client */
+.sage-entreprise-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .sage-entreprise-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sage-entreprise-card {
+  background: var(--sage-gray);
+  border-radius: var(--sage-radius);
+  padding: 20px;
+  border: 1px solid var(--sage-border);
+}
+
+.sage-entreprise-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--sage-border);
+}
+
+.sage-entreprise-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sage-entreprise-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--sage-text-light);
+  line-height: 1.4;
+}
+
+.sage-detail-icon {
+  font-size: 14px;
+  color: var(--sage-blue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sage-client-card {
+  border: 1px solid var(--sage-border);
+  border-radius: var(--sage-radius);
+  padding: 20px;
+}
+
+.sage-client-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.sage-client-icon {
+  font-size: 20px;
+  color: var(--sage-blue);
+}
+
+.sage-client-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin: 0 0 8px 0;
+}
+
+.sage-client-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--sage-border);
+  border-radius: var(--sage-radius);
+  font-size: 14px;
+  color: var(--sage-text);
+  background: white;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.sage-client-select:focus {
+  outline: none;
+  border-color: var(--sage-blue);
+  box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.1);
+}
+
+.sage-client-select:disabled {
+  background: var(--sage-gray);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.sage-client-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--sage-border);
+}
+
+.sage-client-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sage-detail-label {
+  font-size: 12px;
+  color: var(--sage-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sage-detail-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sage-text);
+}
+
+.sage-devise-pref {
+  color: var(--sage-blue);
+  font-weight: 600;
+}
+
+/* Section Paramètres */
+.sage-parametres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.sage-parametre-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sage-field-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin-bottom: 4px;
+}
+
+.sage-field-icon {
+  font-size: 14px;
+  color: var(--sage-blue);
+}
+
+.sage-field-input,
+.sage-field-select {
+  padding: 8px 12px;
+  border: 1px solid var(--sage-border);
+  border-radius: var(--sage-radius);
+  font-size: 14px;
+  color: var(--sage-text);
+  background: white;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.sage-field-input:focus,
+.sage-field-select:focus {
+  outline: none;
+  border-color: var(--sage-blue);
+  box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.1);
+}
+
+.sage-field-input:disabled,
+.sage-field-select:disabled {
+  background: var(--sage-gray);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.sage-taux-change-info {
+  font-size: 12px;
+  color: var(--sage-text-light);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* Section Paiement */
+.sage-paiement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.sage-paiement-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sage-field-help {
+  font-size: 12px;
+  color: var(--sage-text-light);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.sage-paiement-resume {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--sage-border);
+}
+
+.sage-paiement-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: var(--sage-radius);
+  font-weight: 600;
+  font-size: 14px;
+  border-left: 4px solid;
+  background: var(--sage-gray);
+  color: var(--sage-text);
+}
+
+.sage-paiement-comptant {
+  background: var(--sage-green-light);
+  color: var(--sage-green);
+  border-left-color: var(--sage-green);
+}
+
+.sage-paiement-flexible {
+  background: var(--sage-blue-light);
+  color: var(--sage-blue-dark);
+  border-left-color: var(--sage-blue);
+}
+
+.sage-paiement-acompte {
+  background: var(--sage-warning-light);
+  color: var(--sage-warning);
+  border-left-color: var(--sage-warning);
+}
+
+.sage-paiement-echeance {
+  background: #f3f2f1;
+  color: var(--sage-text);
+  border-left-color: var(--sage-gray-dark);
+}
+
+.sage-badge-icon {
+  font-size: 16px;
+}
+
+/* Section Articles */
+.sage-table-container {
+  overflow-x: auto;
+  border-radius: var(--sage-radius);
+  border: 1px solid var(--sage-border);
+  margin-bottom: 20px;
+}
+
+.sage-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.sage-table-header {
+  background: var(--sage-gray);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--sage-text);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--sage-border);
+  white-space: nowrap;
+}
+
+.sage-table-icon {
+  margin-right: 8px;
+  font-size: 12px;
+  color: var(--sage-blue);
+}
+
+.sage-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--sage-border);
+  font-size: 14px;
+  color: var(--sage-text);
+}
+
+.sage-table tr:hover {
+  background: var(--sage-gray);
+}
+
+.sage-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Bouton Nouvelle Ligne en bas */
+.sage-add-ligne-bottom {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--sage-border);
+}
+
+.sage-add-ligne-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: white;
+  color: var(--sage-blue);
+  border: 1px solid var(--sage-blue);
+  border-radius: var(--sage-radius);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sage-add-ligne-button:hover:not(:disabled) {
+  background: var(--sage-blue);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.sage-add-ligne-button:disabled {
+  background: var(--sage-gray);
+  border-color: var(--sage-border);
+  color: var(--sage-text-light);
+  cursor: not-allowed;
+}
+
+/* Section Actions */
+.sage-actions-section {
+  background: white;
+  border-radius: var(--sage-radius);
+  padding: 24px;
+  margin-top: 20px;
+  box-shadow: var(--sage-shadow);
+  border: 1px solid var(--sage-border);
+}
+
+.sage-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: var(--sage-radius);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.sage-button-icon {
+  font-size: 14px;
+}
+
+.sage-button-draft {
+  background: var(--sage-gray);
+  color: var(--sage-text);
+  border: 1px solid var(--sage-border);
+}
+
+.sage-button-draft:hover:not(:disabled) {
+  background: #e1dfdd;
+  transform: translateY(-1px);
+}
+
+.sage-button-submit {
+  background: var(--sage-blue);
+  color: white;
+  margin-left: 12px;
+}
+
+.sage-button-submit:hover:not(:disabled) {
+  background: var(--sage-blue-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+}
+
+.sage-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Section Validation */
+.sage-validation-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.sage-validation-message {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.sage-validation-icon {
+  font-size: 32px;
+  color: var(--sage-blue);
+}
+
+.sage-validation-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin-bottom: 4px;
+}
+
+.sage-validation-subtitle {
+  font-size: 14px;
+  color: var(--sage-text-light);
+}
+
+.sage-validation-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.sage-button-validate {
+  background: var(--sage-green);
+  color: white;
+}
+
+.sage-button-validate:hover:not(:disabled) {
+  background: #0e6b0e;
+  transform: translateY(-1px);
+}
+
+.sage-button-new {
+  background: var(--sage-gray);
+  color: var(--sage-text);
+  border: 1px solid var(--sage-border);
+}
+
+.sage-button-new:hover:not(:disabled) {
+  background: #e1dfdd;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sage-facture-form {
+    padding: 12px;
+  }
+  
+  .sage-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .sage-header-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .sage-entreprise-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sage-parametres-grid,
+  .sage-paiement-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sage-validation-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+  
+  .sage-validation-message {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .sage-validation-actions {
+    justify-content: center;
+  }
+  
+  .sage-table-container {
+    font-size: 12px;
+  }
+  
+  .sage-table th,
+  .sage-table td {
+    padding: 8px 12px;
+  }
+  
+  .sage-button-submit {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sage-section {
+    padding: 16px;
+  }
+  
+  .sage-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .sage-table {
+    font-size: 11px;
+  }
+  
+  .sage-table th,
+  .sage-table td {
+    padding: 6px 8px;
+  }
+}
+
+/* Styles pour l'impression */
+@media print {
+  .sage-facture-form {
+    background: white;
+    padding: 0;
+  }
+  
+  .sage-add-ligne-button,
+  .sage-button {
+    display: none !important;
+  }
+  
+  .sage-section {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    break-inside: avoid;
+  }
+  
+  .sage-table-container {
+    border: 1px solid #ddd;
+  }
+}

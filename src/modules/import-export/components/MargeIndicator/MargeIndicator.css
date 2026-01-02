@@ -1,0 +1,63 @@
+.marge-indicator {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid;
+  background-color: white;
+}
+
+.marge-header {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.25rem;
+}
+
+.marge-icon {
+  font-size: 0.75rem;
+}
+
+.marge-label {
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+.marge-details {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.marge-montant {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.marge-taux {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.marge-red {
+  border-color: #fecaca;
+  background-color: #fef2f2;
+}
+
+.marge-orange {
+  border-color: #fed7aa;
+  background-color: #fff7ed;
+}
+
+.marge-blue {
+  border-color: #bfdbfe;
+  background-color: #eff6ff;
+}
+
+.marge-green {
+  border-color: #bbf7d0;
+  background-color: #f0fdf4;
+}
+
+.text-red-700 { color: #dc2626; }
+.text-orange-700 { color: #c2410c; }
+.text-blue-700 { color: #1d4ed8; }
+.text-green-700 { color: #15803d; }

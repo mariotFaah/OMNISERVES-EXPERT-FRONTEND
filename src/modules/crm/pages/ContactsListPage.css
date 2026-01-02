@@ -1,0 +1,425 @@
+/* src/modules/crm/pages/ContactsListPage.css */
+
+/* Variables de couleurs Microsoft */
+:root {
+  --ms-primary: #0078d4;
+  --ms-primary-dark: #106ebe;
+  --ms-primary-light: #deecf9;
+  --ms-surface: #ffffff;
+  --ms-surface-alt: #faf9f8;
+  --ms-border: #edebe9;
+  --ms-border-focus: #0078d4;
+  --ms-text-primary: #323130;
+  --ms-text-secondary: #605e5c;
+  --ms-text-disabled: #a19f9d;
+  --ms-error: #d13438;
+  --ms-error-bg: #fdf6f6;
+  --ms-success: #107c10;
+  --ms-shadow: 0 1.6px 3.6px 0 rgba(0, 0, 0, 0.132), 0 0.3px 0.9px 0 rgba(0, 0, 0, 0.108);
+  --ms-shadow-hover: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
+}
+
+/* Container principal */
+.ms-page-container {
+  background: var(--ms-surface);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* Header de page */
+.ms-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--ms-border);
+  background: var(--ms-surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.ms-header-left {
+  flex: 1;
+}
+
+.ms-page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin: 0 0 4px 0;
+  line-height: 32px;
+}
+
+.ms-page-subtitle {
+  font-size: 14px;
+  color: var(--ms-text-secondary);
+}
+
+.ms-header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Barre d'outils */
+.ms-toolbar {
+  display: flex;
+  gap: 16px;
+  padding: 16px 24px;
+  background: var(--ms-surface-alt);
+  border-bottom: 1px solid var(--ms-border);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ms-search-box {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+}
+
+.ms-search-input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  font-size: 14px;
+  background: var(--ms-surface);
+  transition: all 0.1s ease;
+}
+
+.ms-search-input:focus {
+  outline: none;
+  border-color: var(--ms-border-focus);
+  box-shadow: 0 0 0 1px var(--ms-border-focus);
+}
+
+.ms-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ms-text-secondary);
+  font-size: 14px;
+}
+
+.ms-filter-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.ms-filter-select {
+  padding: 8px 12px;
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  font-size: 14px;
+  background: var(--ms-surface);
+  min-width: 200px;
+}
+
+/* Boutons */
+.ms-btn {
+  padding: 8px 16px;
+  border: 1px solid;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.ms-btn-primary {
+  background: var(--ms-primary);
+  color: white;
+  border-color: var(--ms-primary);
+}
+
+.ms-btn-primary:hover:not(:disabled) {
+  background: var(--ms-primary-dark);
+  border-color: var(--ms-primary-dark);
+}
+
+.ms-btn-secondary {
+  background: transparent;
+  color: var(--ms-primary);
+  border-color: var(--ms-primary);
+}
+
+.ms-btn-secondary:hover:not(:disabled) {
+  background: var(--ms-primary-light);
+}
+
+.ms-btn-danger {
+  background: transparent;
+  color: var(--ms-error);
+  border-color: var(--ms-error);
+}
+
+.ms-btn-danger:hover:not(:disabled) {
+  background: #fdf6f6;
+}
+
+.ms-btn-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+  min-height: 28px;
+}
+
+.ms-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Message d'erreur */
+.ms-error-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--ms-error-bg);
+  border: 1px solid var(--ms-error);
+  color: var(--ms-error);
+  font-size: 14px;
+  margin: 0 24px 16px;
+}
+
+.ms-error-icon {
+  font-size: 16px;
+}
+
+/* Container de la grille */
+.ms-grid-container {
+  padding: 0 24px 24px;
+}
+
+.ms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+/* Cartes de contact */
+.ms-card {
+  background: var(--ms-surface);
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  box-shadow: var(--ms-shadow);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.ms-card:hover {
+  box-shadow: var(--ms-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.ms-card-header {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--ms-border);
+  background: var(--ms-surface-alt);
+}
+
+.ms-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ms-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.ms-card-title-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.ms-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin: 0 0 4px 0;
+  line-height: 1.4;
+}
+
+.ms-card-subtitle {
+  font-size: 14px;
+  color: var(--ms-text-secondary);
+  margin: 0 0 6px 0;
+}
+
+/* Badges */
+.ms-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.ms-badge-primary {
+  background: var(--ms-primary-light);
+  color: var(--ms-primary);
+}
+
+/* Contenu de la carte */
+.ms-card-content {
+  padding: 16px;
+}
+
+.ms-property {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.ms-property:last-child {
+  margin-bottom: 0;
+}
+
+.ms-property-label {
+  font-size: 12px;
+  color: var(--ms-text-secondary);
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.ms-property-value {
+  font-size: 13px;
+  color: var(--ms-text-primary);
+  text-align: right;
+  word-break: break-word;
+  flex: 1;
+}
+
+.ms-link {
+  color: var(--ms-primary);
+  text-decoration: none;
+}
+
+.ms-link:hover {
+  text-decoration: underline;
+}
+
+.ms-notes {
+  font-style: italic;
+  color: var(--ms-text-secondary);
+}
+
+/* Actions de la carte */
+.ms-card-actions {
+  padding: 12px 16px;
+  border-top: 1px solid var(--ms-border);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* État vide */
+.ms-empty-state {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--ms-text-secondary);
+}
+
+.ms-empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.ms-empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin: 0 0 8px 0;
+}
+
+.ms-empty-description {
+  font-size: 14px;
+  margin: 0 0 20px 0;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Loading */
+.ms-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 16px;
+  color: var(--ms-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ms-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .ms-page-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+    padding: 16px;
+  }
+  
+  .ms-toolbar {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .ms-search-box {
+    max-width: none;
+  }
+  
+  .ms-grid-container {
+    padding: 0 16px 16px;
+  }
+  
+  .ms-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ms-card-actions {
+    flex-direction: column;
+  }
+  
+  .ms-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ms-property {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .ms-property-value {
+    text-align: left;
+  }
+}

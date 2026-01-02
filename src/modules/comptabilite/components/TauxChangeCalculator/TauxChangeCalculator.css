@@ -1,0 +1,105 @@
+/* src/modules/comptabilite/components/TauxChangeCalculator/TauxChangeCalculator.css */
+.taux-change-calculator {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+}
+
+.taux-change-calculator h3 {
+  margin: 0 0 20px 0;
+  color: #1e293b;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.conversion-inputs {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.input-group {
+  flex: 1;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.input-with-devise {
+  display: flex;
+  gap: 8px;
+}
+
+.input-with-devise input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.input-with-devise select,
+.input-group select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: white;
+  font-size: 14px;
+  min-width: 80px;
+}
+
+.inverse-button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.inverse-button:hover {
+  background: #2563eb;
+}
+
+.resultat-conversion {
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.montant-converti {
+  font-weight: 600;
+  color: #059669;
+}
+
+.taux-loading {
+  color: #64748b;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.taux-info {
+  text-align: center;
+}
+
+.taux-info small {
+  color: #64748b;
+}

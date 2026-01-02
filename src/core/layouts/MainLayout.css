@@ -1,0 +1,61 @@
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f9fafb;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Contenu principal */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  width: 100%;
+  min-height: 100vh;
+  min-width: 0;
+  margin-left: 70px; /* ← Largeur de la sidebar fermée */
+}
+
+/* Quand sidebar est ouverte (desktop) */
+.main-content.sidebar-open {
+  margin-left: 280px; /* ← Largeur de la sidebar ouverte */
+  width: calc(100% - 280px);
+}
+
+/* Zone centrale où s'affichent les pages */
+.main-content-area {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #f9fafb;
+  min-height: calc(100vh - 60px);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto; /* Permet le défilement horizontal si nécessaire */
+}
+
+/* Responsive : en mobile, pas de décalage */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .main-content.sidebar-open {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  .main-content-area {
+    padding: 1rem;
+  }
+}
+
+/* Pour les très petits écrans */
+@media (max-width: 480px) {
+  .main-content-area {
+    padding: 0.5rem;
+  }
+}

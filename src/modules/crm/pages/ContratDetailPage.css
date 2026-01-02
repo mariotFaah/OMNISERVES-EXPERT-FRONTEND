@@ -1,0 +1,394 @@
+/* src/modules/crm/pages/ContratDetailPage.css */
+
+/* Layout spécifique à la page de détail */
+.ms-crm-detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 24px;
+  align-items: start;
+}
+
+.ms-crm-detail-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ms-crm-detail-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Subtitle */
+.ms-crm-subtitle {
+  font-size: 16px;
+  color: #605e5c;
+  margin: 4px 0 0 0;
+  font-weight: 400;
+}
+
+/* Status Section */
+.ms-crm-status-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.ms-crm-status-badge-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ms-crm-status-badge {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ms-crm-status-actif {
+  background: #dff6dd;
+  color: #107c10;
+  border: 1px solid #107c10;
+}
+
+.ms-crm-status-inactif {
+  background: #f4f4f4;
+  color: #605e5c;
+  border: 1px solid #605e5c;
+}
+
+.ms-crm-status-resilie {
+  background: #fef7f7;
+  color: #d13438;
+  border: 1px solid #d13438;
+}
+
+.ms-crm-status-termine {
+  background: #eef2f8;
+  color: #0078d4;
+  border: 1px solid #0078d4;
+}
+
+.ms-crm-days-remaining {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ms-crm-days-positive {
+  color: #107c10;
+}
+
+.ms-crm-days-negative {
+  color: #d13438;
+}
+
+/* Quick Actions */
+.ms-crm-quick-actions {
+  flex: 1;
+  max-width: 300px;
+}
+
+.ms-crm-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #323130;
+  margin: 0 0 12px 0;
+}
+
+.ms-crm-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Button Variants */
+.ms-crm-btn-warning {
+  background: #fff4ce;
+  border-color: #f2c811;
+  color: #8a6e00;
+}
+
+.ms-crm-btn-warning:hover {
+  background: #f2c811;
+  border-color: #8a6e00;
+  color: white;
+}
+
+.ms-crm-btn-info {
+  background: #e1f5fe;
+  border-color: #0099bc;
+  color: #0099bc;
+}
+
+.ms-crm-btn-info:hover {
+  background: #0099bc;
+  border-color: #0078d4;
+  color: white;
+}
+
+.ms-crm-btn-success {
+  background: #dff6dd;
+  border-color: #107c10;
+  color: #107c10;
+}
+
+.ms-crm-btn-success:hover {
+  background: #107c10;
+  border-color: #107c10;
+  color: white;
+}
+
+.ms-crm-btn-small {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* Info Grid */
+.ms-crm-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.ms-crm-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ms-crm-info-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #605e5c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ms-crm-info-value {
+  font-size: 14px;
+  color: #323130;
+  font-weight: 500;
+}
+
+.ms-crm-amount {
+  font-weight: 600;
+}
+
+.ms-crm-ttc {
+  color: #107c10;
+  font-size: 15px;
+}
+
+/* Description & Conditions */
+.ms-crm-description,
+.ms-crm-conditions {
+  line-height: 1.6;
+  color: #323130;
+  white-space: pre-wrap;
+}
+
+.ms-crm-empty-state {
+  color: #a19f9d;
+  font-style: italic;
+}
+
+/* Documents List */
+.ms-crm-documents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ms-crm-document-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #e1e5e9;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.ms-crm-document-link:hover {
+  background: #f3f2f1;
+  border-color: #0078d4;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ms-crm-document-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.ms-crm-document-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.ms-crm-document-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #323130;
+}
+
+.ms-crm-document-subtitle {
+  font-size: 12px;
+  color: #605e5c;
+}
+
+/* Metadata */
+.ms-crm-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ms-crm-metadata-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ms-crm-metadata-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #605e5c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ms-crm-metadata-value {
+  font-size: 14px;
+  color: #323130;
+  font-weight: 500;
+}
+
+/* Client Info */
+.ms-crm-client-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ms-crm-client-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #323130;
+}
+
+.ms-crm-client-email {
+  font-size: 14px;
+  color: #605e5c;
+}
+
+/* Error States */
+.ms-crm-error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+  background: white;
+  border-radius: 4px;
+  margin: 24px;
+}
+
+.ms-crm-error-state .ms-crm-error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.ms-crm-error-state h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #323130;
+  margin: 0 0 8px 0;
+}
+
+.ms-crm-error-state p {
+  font-size: 14px;
+  color: #605e5c;
+  margin: 0 0 20px 0;
+  max-width: 400px;
+}
+
+/* Icons */
+.ms-crm-icon {
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .ms-crm-detail-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .ms-crm-status-section {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .ms-crm-quick-actions {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .ms-crm-info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ms-crm-action-buttons {
+    flex-direction: column;
+  }
+  
+  .ms-crm-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .ms-crm-header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* Loading and Error States (réutilisés depuis ContratForm.css) */
+.ms-crm-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 60px 24px;
+  color: #605e5c;
+  font-size: 16px;
+}
+
+.ms-crm-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #f3f2f1;
+  border-top: 2px solid #0078d4;
+  border-radius: 50%;
+  animation: ms-crm-spin 1s linear infinite;
+}
+
+@keyframes ms-crm-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,374 @@
+/* RapportsPage.css - Style Microsoft Sage */
+
+/* Variables de couleur Sage */
+:root {
+  --sage-blue: #0078d4;
+  --sage-blue-dark: #106ebe;
+  --sage-blue-light: #c7e0f4;
+  --sage-green: #107c10;
+  --sage-green-light: #dff6dd;
+  --sage-gray: #f3f2f1;
+  --sage-gray-dark: #8a8886;
+  --sage-gray-light: #faf9f8;
+  --sage-border: #edebe9;
+  --sage-text: #323130;
+  --sage-text-light: #605e5c;
+  --sage-shadow: 0 2.4px 7.2px rgba(0,0,0,.13), 0 0.8px 2.7px rgba(0,0,0,.11);
+  --sage-radius: 4px;
+}
+
+/* Page Container */
+.sage-rapports-page {
+  font-family: 'Segoe UI', 'Segoe UI Web (West European)', SegoeUI, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+  color: var(--sage-text);
+  background: var(--sage-gray-light);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Header */
+.sage-header {
+  background: white;
+  border-radius: var(--sage-radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--sage-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid var(--sage-blue);
+}
+
+.sage-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sage-header-icon {
+  font-size: 32px;
+  color: var(--sage-blue);
+}
+
+.sage-page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.sage-page-subtitle {
+  font-size: 14px;
+  color: var(--sage-text-light);
+  margin-top: 4px;
+}
+
+/* Stats Overview */
+.sage-stats-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.sage-stat-card {
+  background: white;
+  border-radius: var(--sage-radius);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--sage-shadow);
+  border: 1px solid var(--sage-border);
+  transition: all 0.2s ease;
+}
+
+.sage-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sage-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--sage-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.sage-stat-complete {
+  background: var(--sage-green-light);
+  color: var(--sage-green);
+}
+
+.sage-stat-operational {
+  background: var(--sage-blue-light);
+  color: var(--sage-blue);
+}
+
+.sage-stat-data {
+  background: var(--sage-gray);
+  color: var(--sage-text);
+}
+
+.sage-stat-info {
+  flex: 1;
+}
+
+.sage-stat-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--sage-text);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sage-stat-label {
+  font-size: 14px;
+  color: var(--sage-text-light);
+}
+
+/* Sections */
+.sage-section {
+  background: white;
+  border-radius: var(--sage-radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--sage-shadow);
+  border: 1px solid var(--sage-border);
+}
+
+.sage-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--sage-border);
+}
+
+.sage-section-icon {
+  font-size: 20px;
+  color: var(--sage-blue);
+}
+
+.sage-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin: 0;
+}
+
+/* Cards Grid */
+.sage-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.sage-card {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: var(--sage-gray);
+  border-radius: var(--sage-radius);
+  border: 1px solid var(--sage-border);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.sage-card:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--sage-blue);
+}
+
+.sage-card:hover .sage-card-arrow span {
+  transform: translateX(4px);
+  color: var(--sage-blue);
+}
+
+.sage-card-icon {
+  font-size: 24px;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.sage-card-content {
+  flex: 1;
+}
+
+.sage-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin: 0 0 8px 0;
+}
+
+.sage-card-description {
+  font-size: 14px;
+  color: var(--sage-text-light);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.sage-card-arrow {
+  margin-left: 12px;
+}
+
+.sage-card-arrow span {
+  font-size: 18px;
+  color: var(--sage-gray-dark);
+  transition: all 0.2s ease;
+}
+
+/* Notice Section */
+.sage-notice-section {
+  margin-top: 32px;
+}
+
+.sage-notice-card {
+  background: white;
+  border-radius: var(--sage-radius);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--sage-shadow);
+  border: 1px solid var(--sage-border);
+  border-left: 4px solid var(--sage-blue);
+}
+
+.sage-notice-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--sage-blue-light);
+  color: var(--sage-blue);
+  border-radius: var(--sage-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.sage-notice-content {
+  flex: 1;
+}
+
+.sage-notice-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin: 0 0 8px 0;
+}
+
+.sage-notice-description {
+  font-size: 14px;
+  color: var(--sage-text-light);
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+
+.sage-notice-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--sage-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.sage-notice-link:hover {
+  color: var(--sage-blue-dark);
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sage-rapports-page {
+    padding: 12px;
+  }
+  
+  .sage-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+  }
+  
+  .sage-stats-overview {
+    grid-template-columns: 1fr;
+  }
+  
+  .sage-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sage-card {
+    padding: 16px;
+  }
+  
+  .sage-notice-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .sage-notice-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sage-section {
+    padding: 16px;
+  }
+  
+  .sage-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .sage-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .sage-card-icon {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+  
+  .sage-card-arrow {
+    display: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sage-rapports-page {
+    background: white;
+    padding: 0;
+  }
+  
+  .sage-card,
+  .sage-stat-card,
+  .sage-notice-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,756 @@
+/* src/modules/comptabilite/pages/FacturesListPage.css */
+
+/* ===== STYLES DE BASE MICROSOFT ===== */
+.ms-crm-container {
+  min-height: 100vh;
+  background: #faf9f8;
+}
+
+/* ===== HEADER STYLES ===== */
+.ms-crm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #edebe9;
+}
+
+.ms-crm-header-left {
+  flex: 1;
+}
+
+.ms-crm-title-section h1 {
+  margin: 0 0 4px 0;
+  font-size: 32px;
+  font-weight: 600;
+  color: #323130;
+}
+
+.ms-crm-subtitle {
+  margin: 0;
+  color: #605e5c;
+  font-size: 14px;
+}
+
+.ms-crm-header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ===== BOUTONS UNIFORMISÉS ===== */
+.ms-crm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.5;
+  min-height: 32px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Bouton principal */
+.ms-crm-btn-primary {
+  background: #0078d4;
+  color: #ffffff;
+  border-color: #0078d4;
+}
+
+.ms-crm-btn-primary:hover {
+  background: #106ebe;
+  border-color: #106ebe;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 120, 212, 0.3);
+}
+
+/* Bouton icône seulement */
+.ms-crm-btn-icon {
+  padding: 8px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.ms-crm-btn-icon:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Bouton voir (violet) */
+.ms-crm-btn-view {
+  background-color: #8661c5 !important;
+  color: white !important;
+  border-color: #8661c5 !important;
+}
+
+/* Bouton modifier (jaune) */
+.ms-crm-btn-edit {
+  background-color: #ffb900 !important;
+  color: #323130 !important;
+  border-color: #ffb900 !important;
+}
+
+/* Bouton valider (vert) */
+.ms-crm-btn-success {
+  background-color: #107c10 !important;
+  color: white !important;
+  border-color: #107c10 !important;
+}
+
+/* Bouton annuler (rouge) */
+.ms-crm-btn-danger {
+  background-color: #d13438 !important;
+  color: white !important;
+  border-color: #d13438 !important;
+}
+
+/* Icônes dans les boutons */
+.action-icon {
+  width: 16px !important;
+  height: 16px !important;
+  display: block !important;
+  margin: 0 !important;
+  color: inherit !important;
+}
+
+/* ===== CONTENEUR D'ACTIONS ===== */
+.ms-crm-actions-container {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* ===== CONTENU PRINCIPAL ===== */
+.ms-crm-content {
+  padding: 24px 32px;
+  max-width: 100%;
+}
+
+/* ===== BARRE DE FILTRES ALIGNÉE ===== */
+.ms-crm-filters-bar {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 0 2px;
+}
+
+/* Wrapper uniforme pour tous les filtres */
+.ms-crm-filter-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 0 1 auto;
+  min-width: 180px;
+}
+
+.ms-crm-search-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 0 1 300px;
+  min-width: 250px;
+}
+
+/* Label des filtres */
+.ms-crm-filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #323130;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 18px;
+  line-height: 1;
+}
+
+.filter-label-icon {
+  font-size: 12px;
+  color: #605e5c;
+  flex-shrink: 0;
+}
+
+/* Champs de recherche */
+.ms-crm-search-box {
+  position: relative;
+  width: 100%;
+}
+
+.ms-crm-search-input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid #8a8886;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  height: 36px;
+  box-sizing: border-box;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23605e5c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 16px;
+}
+
+.ms-crm-search-input:focus {
+  outline: none;
+  border-color: #0078d4;
+  box-shadow: 0 0 0 1px #0078d4;
+}
+
+/* Selects de filtre */
+.ms-crm-filter-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #8a8886;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff;
+  cursor: pointer;
+  height: 36px;
+  box-sizing: border-box;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23605e5c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+
+.ms-crm-filter-select:focus {
+  outline: none;
+  border-color: #0078d4;
+  box-shadow: 0 0 0 1px #0078d4;
+}
+
+/* Stats */
+.ms-crm-stats {
+  display: flex;
+  align-items: flex-end;
+  margin-left: auto;
+  height: 60px; /* Hauteur alignée avec les wrappers */
+  align-items: center;
+}
+
+.ms-crm-stat-badge {
+  background: #f3f2f1;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #605e5c;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.stat-icon {
+  font-size: 12px;
+}
+
+/* ===== CARTE PRINCIPALE ===== */
+.ms-crm-card {
+  background: #ffffff;
+  border: 1px solid #edebe9;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.ms-crm-table-container {
+  overflow-x: auto;
+}
+
+/* ===== TABLEAU ===== */
+.ms-crm-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ms-crm-table-header {
+  background: #faf9f8;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #323130;
+  border-bottom: 1px solid #edebe9;
+  white-space: nowrap;
+}
+
+.ms-crm-table-header span {
+  margin-left: 8px;
+}
+
+.table-header-icon {
+  font-size: 14px;
+  color: #605e5c;
+  vertical-align: middle;
+}
+
+.ms-crm-table-row {
+  border-bottom: 1px solid #edebe9;
+  transition: background-color 0.2s ease;
+}
+
+.ms-crm-table-row:hover {
+  background: #f8f9fa;
+}
+
+.ms-crm-table-cell {
+  padding: 16px;
+  font-size: 14px;
+  color: #323130;
+  vertical-align: middle;
+}
+
+.ms-crm-text-center {
+  text-align: center;
+}
+
+.ms-crm-text-right {
+  text-align: right;
+}
+
+/* ===== STYLES SPÉCIFIQUES FACTURES ===== */
+.ms-crm-facture-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ms-crm-facture-number {
+  font-size: 14px;
+  font-weight: 600;
+  color: #323130;
+}
+
+.ms-crm-facture-devise {
+  font-size: 12px;
+  color: #605e5c;
+  background: #f3f2f1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.ms-crm-client-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ms-crm-client-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #323130;
+}
+
+.ms-crm-client-type {
+  font-size: 12px;
+  color: #605e5c;
+}
+
+.ms-crm-echeance-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #605e5c;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.ms-crm-echeance-label {
+  font-weight: 600;
+}
+
+.ms-crm-echeance-date {
+  color: #323130;
+}
+
+.ms-crm-jours-restants {
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ms-crm-retard {
+  background: #fef7f7;
+  color: #d13438;
+  border: 1px solid #d13438;
+}
+
+.ms-crm-warning {
+  background: #fff4ce;
+  color: #8a6e00;
+  border: 1px solid #8a6e00;
+}
+
+.ms-crm-normal {
+  background: #dff6dd;
+  color: #107c10;
+  border: 1px solid #107c10;
+}
+
+.ms-crm-date {
+  font-size: 14px;
+  color: #323130;
+  font-weight: 500;
+}
+
+.ms-crm-type-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ms-crm-type-icon {
+  font-size: 16px;
+  color: #605e5c;
+}
+
+.ms-crm-financial-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+}
+
+.ms-crm-amount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #323130;
+}
+
+.ms-crm-paye {
+  font-size: 12px;
+  color: #107c10;
+  font-weight: 500;
+}
+
+.ms-crm-progression {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.ms-crm-progression-bar {
+  flex: 1;
+  height: 6px;
+  background: #f3f2f1;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ms-crm-progression-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.ms-crm-complete {
+  background: #107c10;
+}
+
+.ms-crm-partial {
+  background: #0078d4;
+}
+
+.ms-crm-empty {
+  background: #a19f9d;
+}
+
+.ms-crm-progression-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #605e5c;
+  min-width: 30px;
+  text-align: right;
+}
+
+.ms-crm-statut-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ms-crm-statut-icon {
+  font-size: 16px;
+  color: #605e5c;
+}
+
+.ms-crm-row-warning {
+  background: #fff4ce !important;
+  border-left: 3px solid #f2c811;
+}
+
+/* ===== BADGES ===== */
+.ms-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+.ms-badge-primary {
+  background: #e1f5fe;
+  color: #0099bc;
+}
+
+.ms-badge-success {
+  background: #dff6dd;
+  color: #107c10;
+}
+
+.ms-badge-warning {
+  background: #fff4ce;
+  color: #8a6e00;
+}
+
+.ms-badge-error {
+  background: #fef7f7;
+  color: #d13438;
+}
+
+.ms-badge-info {
+  background: #eef2f8;
+  color: #0078d4;
+}
+
+.ms-badge-default {
+  background: #f3f2f1;
+  color: #605e5c;
+}
+
+/* ===== ÉTAT VIDE ===== */
+.ms-crm-empty-state {
+  padding: 64px 32px;
+  text-align: center;
+}
+
+.ms-crm-empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  color: #c8c6c4;
+}
+
+.ms-crm-empty-state h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  color: #323130;
+}
+
+.ms-crm-empty-state p {
+  margin: 0 0 24px 0;
+  color: #605e5c;
+  font-size: 14px;
+}
+
+/* ===== CHARGEMENT ===== */
+.ms-crm-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 32px;
+  gap: 16px;
+}
+
+.ms-crm-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #f3f2f1;
+  border-top: 3px solid #0078d4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.ms-crm-spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f2f1;
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+  .ms-crm-filters-bar {
+    gap: 16px;
+  }
+  
+  .ms-crm-search-wrapper {
+    flex: 0 1 250px;
+    min-width: 220px;
+  }
+  
+  .ms-crm-filter-wrapper {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ms-crm-progression {
+    min-width: 100px;
+  }
+  
+  .ms-crm-actions-container {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .ms-crm-stats {
+    margin-left: 0;
+    justify-content: flex-end;
+    width: 100%;
+    height: auto;
+    margin-top: 8px;
+  }
+  
+  .ms-crm-stat-badge {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .ms-crm-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px;
+  }
+  
+  .ms-crm-header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .ms-crm-filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .ms-crm-search-wrapper,
+  .ms-crm-filter-wrapper {
+    width: 100%;
+    min-width: 100%;
+  }
+  
+  .ms-crm-stats {
+    justify-content: center;
+    margin-top: 0;
+    margin-left: 0;
+  }
+  
+  .ms-crm-stat-badge {
+    margin-left: 0;
+  }
+  
+  .ms-crm-content {
+    padding: 16px;
+  }
+  
+  .ms-crm-table-cell {
+    padding: 12px 8px;
+  }
+  
+  .ms-crm-progression {
+    min-width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ms-crm-table-header {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+  
+  .ms-crm-table-header span {
+    display: none;
+  }
+  
+  .table-header-icon {
+    margin: 0;
+  }
+  
+  .ms-crm-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .ms-crm-btn-icon {
+    min-width: 32px !important;
+    min-height: 32px !important;
+    padding: 6px !important;
+  }
+  
+  .ms-crm-actions-container {
+    gap: 4px;
+  }
+}
+
+/* Améliorations pour les états hover */
+.ms-crm-btn-view:hover {
+  background-color: #7a56b8 !important;
+  border-color: #7a56b8 !important;
+}
+
+.ms-crm-btn-edit:hover {
+  background-color: #f2aa00 !important;
+  border-color: #f2aa00 !important;
+}
+
+.ms-crm-btn-success:hover {
+  background-color: #0e700e !important;
+  border-color: #0e700e !important;
+}
+
+.ms-crm-btn-danger:hover {
+  background-color: #c02c30 !important;
+  border-color: #c02c30 !important;
+}
+
+.ms-crm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}

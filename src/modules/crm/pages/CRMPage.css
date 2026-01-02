@@ -1,0 +1,633 @@
+/* src/modules/crm/pages/CRMPage.css */
+
+/* Variables de couleurs Microsoft */
+:root {
+  --ms-primary: #0078d4;
+  --ms-primary-dark: #106ebe;
+  --ms-primary-light: #deecf9;
+  --ms-surface: #ffffff;
+  --ms-surface-alt: #faf9f8;
+  --ms-border: #edebe9;
+  --ms-border-focus: #0078d4;
+  --ms-text-primary: #323130;
+  --ms-text-secondary: #605e5c;
+  --ms-text-disabled: #a19f9d;
+  --ms-error: #d13438;
+  --ms-error-bg: #fdf6f6;
+  --ms-success: #107c10;
+  --ms-warning: #ffb900;
+  --ms-shadow: 0 1.6px 3.6px 0 rgba(0, 0, 0, 0.132), 0 0.3px 0.9px 0 rgba(0, 0, 0, 0.108);
+}
+
+/* Container principal */
+.ms-page-container {
+  background: var(--ms-surface);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* Header de page */
+.ms-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--ms-border);
+  background: var(--ms-surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.ms-header-left {
+  flex: 1;
+}
+
+.ms-page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin: 0 0 4px 0;
+  line-height: 32px;
+}
+
+.ms-page-subtitle {
+  font-size: 14px;
+  color: var(--ms-text-secondary);
+}
+
+.ms-header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Grille de statistiques */
+.ms-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 24px;
+  background: var(--ms-surface-alt);
+  border-bottom: 1px solid var(--ms-border);
+}
+
+.ms-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--ms-surface);
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  box-shadow: var(--ms-shadow);
+  transition: all 0.2s ease;
+}
+
+.ms-stat-card:hover {
+  border-color: var(--ms-border-focus);
+  box-shadow: 0 2px 8px rgba(0, 120, 212, 0.1);
+}
+
+.ms-stat-icon {
+  font-size: 24px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ms-primary-light);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.ms-stat-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ms-stat-value {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.ms-stat-primary {
+  color: var(--ms-primary);
+}
+
+.ms-stat-label {
+  font-size: 14px;
+  color: var(--ms-text-secondary);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.ms-stat-detail {
+  font-size: 12px;
+  color: var(--ms-text-secondary);
+}
+
+/* Grille du dashboard */
+.ms-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Cartes du dashboard */
+.ms-dashboard-card {
+  background: var(--ms-surface);
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  box-shadow: var(--ms-shadow);
+}
+
+.ms-urgent-card {
+  border-left: 4px solid var(--ms-warning);
+}
+
+.ms-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--ms-border);
+  background: var(--ms-surface-alt);
+}
+
+.ms-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin: 0;
+}
+
+.ms-card-link {
+  font-size: 14px;
+  color: var(--ms-primary);
+  text-decoration: none;
+}
+
+.ms-card-link:hover {
+  text-decoration: underline;
+}
+
+.ms-card-content {
+  padding: 20px;
+}
+
+/* Boutons */
+.ms-btn {
+  padding: 8px 16px;
+  border: 1px solid;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.ms-btn-primary {
+  background: var(--ms-primary);
+  color: white;
+  border-color: var(--ms-primary);
+}
+
+.ms-btn-primary:hover:not(:disabled) {
+  background: var(--ms-primary-dark);
+  border-color: var(--ms-primary-dark);
+}
+
+.ms-btn-secondary {
+  background: transparent;
+  color: var(--ms-primary);
+  border-color: var(--ms-primary);
+}
+
+.ms-btn-secondary:hover:not(:disabled) {
+  background: var(--ms-primary-light);
+}
+
+.ms-btn-warning {
+  background: var(--ms-warning);
+  color: white;
+  border-color: var(--ms-warning);
+}
+
+.ms-btn-warning:hover:not(:disabled) {
+  background: #e6a800;
+  border-color: #e6a800;
+}
+
+.ms-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Badges */
+.ms-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ms-badge-success {
+  background: #dff6dd;
+  color: #107c10;
+}
+
+.ms-badge-warning {
+  background: #fff4ce;
+  color: #8a6d00;
+}
+
+.ms-badge-error {
+  background: #fde7e9;
+  color: #d13438;
+}
+
+.ms-badge-neutral {
+  background: #f3f2f1;
+  color: #605e5c;
+}
+
+/* Listes */
+.ms-activities-list,
+.ms-clients-list,
+.ms-devis-list,
+.ms-relances-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Items d'activité */
+.ms-activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  transition: all 0.1s ease;
+}
+
+.ms-activity-item:hover {
+  border-color: var(--ms-border-focus);
+  background: var(--ms-surface-alt);
+}
+
+.ms-activity-icon {
+  font-size: 16px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ms-primary-light);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ms-activity-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ms-activity-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.ms-activity-meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.ms-activity-type,
+.ms-activity-date {
+  font-size: 12px;
+  color: var(--ms-text-secondary);
+}
+
+/* Items client */
+.ms-client-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.ms-client-item:hover {
+  border-color: var(--ms-border-focus);
+  background: var(--ms-surface-alt);
+}
+
+.ms-client-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ms-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.ms-client-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ms-client-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin-bottom: 2px;
+}
+
+.ms-client-stats {
+  font-size: 12px;
+  color: var(--ms-text-secondary);
+}
+
+.ms-client-ca {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ms-primary);
+  flex-shrink: 0;
+}
+
+/* Items devis */
+.ms-devis-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.ms-devis-item:hover {
+  border-color: var(--ms-border-focus);
+  background: var(--ms-surface-alt);
+}
+
+.ms-devis-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ms-devis-numero {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin-bottom: 2px;
+}
+
+.ms-devis-client {
+  font-size: 12px;
+  color: var(--ms-text-secondary);
+  margin-bottom: 2px;
+}
+
+.ms-devis-montant {
+  font-size: 12px;
+  color: var(--ms-primary);
+  font-weight: 600;
+}
+
+.ms-devis-date {
+  font-size: 12px;
+  color: var(--ms-warning);
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+/* Items relance */
+.ms-relance-item {
+  padding: 12px;
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+.ms-relance-item:last-child {
+  margin-bottom: 0;
+}
+
+.ms-relance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.ms-relance-type {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  text-transform: uppercase;
+}
+
+.ms-relance-canal {
+  font-size: 11px;
+  color: var(--ms-text-secondary);
+  background: var(--ms-surface-alt);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.ms-relance-objet {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin-bottom: 4px;
+}
+
+.ms-relance-client {
+  font-size: 12px;
+  color: var(--ms-text-secondary);
+  margin-bottom: 4px;
+}
+
+.ms-relance-date {
+  font-size: 11px;
+  color: var(--ms-text-secondary);
+}
+
+.ms-relance-actions {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ms-border);
+}
+
+/* Navigation rapide */
+.ms-quick-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.ms-nav-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.ms-nav-card:hover {
+  border-color: var(--ms-border-focus);
+  background: var(--ms-surface-alt);
+  text-decoration: none;
+  color: inherit;
+}
+
+.ms-nav-icon {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ms-primary-light);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.ms-nav-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ms-nav-content h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin: 0 0 4px 0;
+}
+
+.ms-nav-content p {
+  font-size: 12px;
+  color: var(--ms-text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* États vides */
+.ms-empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--ms-text-secondary);
+}
+
+.ms-empty-state p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Loading */
+.ms-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 16px;
+  color: var(--ms-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ms-dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .ms-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ms-page-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+    padding: 16px;
+  }
+  
+  .ms-header-actions {
+    justify-content: flex-start;
+  }
+  
+  .ms-stats-grid {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .ms-dashboard-grid {
+    padding: 16px;
+  }
+  
+  .ms-quick-nav-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .ms-quick-nav-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ms-btn {
+    width: 100%;
+  }
+  
+  .ms-devis-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .ms-devis-date {
+    margin-left: 0;
+  }
+}

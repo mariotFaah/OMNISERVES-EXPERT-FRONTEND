@@ -1,0 +1,118 @@
+.tiers-page {
+  padding: 2rem;
+}
+
+.tiers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.tiers-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.tiers-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.tiers-add-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.tiers-add-btn:hover {
+  background-color: #0069d9;
+}
+
+.tiers-table-container {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.tiers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tiers-table th, .tiers-table td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+
+.tiers-actions button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tiers-edit-btn {
+  background-color: #ffc107;
+}
+.tiers-delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+.tiers-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #777;
+}
+
+/* Modal */
+.tiers-modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+}
+.tiers-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 400px;
+}
+.tiers-modal form {
+  display: flex;
+  flex-direction: column;
+}
+.tiers-modal label {
+  margin-top: 0.8rem;
+  font-weight: 500;
+}
+.tiers-modal input, .tiers-modal select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.tiers-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+.tiers-save-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+}
+.tiers-cancel-btn {
+  background: #ccc;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}

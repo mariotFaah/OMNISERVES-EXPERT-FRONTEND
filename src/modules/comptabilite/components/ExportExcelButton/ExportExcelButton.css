@@ -1,0 +1,17 @@
+/* AJOUT: Style pour le bouton Excel dans le détail */
+.facture-detail-excel-button {
+  background: linear-gradient(135deg, #217346 0%, #29a366 100%);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.facture-detail-excel-button:hover {
+  background: linear-gradient(135deg, #1d6540 0%, #248f57 100%);
+  transform: translateY(-1px);
+}

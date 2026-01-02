@@ -1,0 +1,328 @@
+/* Styles existants + nouveaux styles pour la section temps réel */
+.taux-change-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Nouveaux styles pour la section temps réel */
+.top-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.realtime-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.refresh-button {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.refresh-button:hover:not(:disabled) {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-1px);
+}
+
+.refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.current-rates {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.rate-card {
+  background: rgba(255,255,255,0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: transform 0.2s ease;
+}
+
+.rate-card:hover {
+  transform: translateY(-2px);
+}
+
+.rate-pair {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rate-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.comparison {
+  background: rgba(255,255,255,0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.comparison h4 {
+  margin: 0 0 1rem 0;
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+.comparison-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.comparison-item:last-child {
+  border-bottom: none;
+}
+
+.pair {
+  font-weight: bold;
+  min-width: 80px;
+  font-size: 0.9rem;
+}
+
+.rates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.ecart {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  min-width: 100px;
+  text-align: center;
+}
+
+.ecart.high {
+  background: rgba(220, 53, 69, 0.3);
+  color: #ff6b6b;
+  border: 1px solid rgba(220, 53, 69, 0.5);
+}
+
+.ecart.low {
+  background: rgba(40, 167, 69, 0.3);
+  color: #51cf66;
+  border: 1px solid rgba(40, 167, 69, 0.5);
+}
+
+.api-info {
+  text-align: center;
+  opacity: 0.7;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+.loading-realtime {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-realtime {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.error-realtime button {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.error-realtime button:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Styles existants pour le reste de la page */
+.taux-list-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.taux-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.taux-card {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+  transition: transform 0.2s ease;
+}
+
+.taux-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.taux-pair {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.devise-source {
+  color: #2c3e50;
+}
+
+.equals {
+  color: #7f8c8d;
+}
+
+.taux-value {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.devise-cible {
+  color: #2c3e50;
+}
+
+.taux-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+.status.actif {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.status.inactif {
+  color: #e74c3c;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+}
+
+/* Styles pour le calculateur existant */
+.calculator-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .top-sections {
+    grid-template-columns: 1fr;
+  }
+  
+  .taux-change-page {
+    padding: 1rem;
+  }
+  
+  .comparison-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .rates {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}

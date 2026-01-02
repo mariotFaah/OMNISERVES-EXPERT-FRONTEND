@@ -1,0 +1,254 @@
+/* src/modules/comptabilite/pages/BalanceComptablePage.css */
+.balance-comptable-page {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  color: #1e293b;
+  margin: 0 0 8px 0;
+  font-size: 28px;
+}
+
+.page-header p {
+  color: #64748b;
+  margin: 0;
+}
+
+.filters-section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filters-form {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.filter-group input {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 150px;
+}
+
+.search-button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  height: 36px;
+}
+
+.search-button:hover {
+  background: #2563eb;
+}
+
+.results-section {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.balance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.balance-table th {
+  background: #f8fafc;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.balance-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.balance-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.compte {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  width: 100px;
+}
+
+.libelle {
+  min-width: 200px;
+}
+
+.debit {
+  color: #dc2626;
+  font-weight: 500;
+  text-align: right;
+}
+
+.credit {
+  color: #059669;
+  font-weight: 500;
+  text-align: right;
+}
+
+.solde {
+  text-align: right;
+  font-weight: 500;
+}
+
+.solde.debiteur {
+  color: #dc2626;
+}
+
+.solde.crediteur {
+  color: #059669;
+}
+
+.solde-indicator {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: normal;
+  margin-top: 2px;
+}
+
+.totals-row {
+  background: #f8fafc;
+  font-weight: 600;
+}
+
+.totals-row td {
+  border-top: 2px solid #e5e7eb;
+  border-bottom: none;
+}
+
+.soldes-totals {
+  background: #f1f5f9;
+  font-weight: 600;
+}
+
+.soldes-totals td {
+  border-bottom: none;
+}
+
+.total-debit {
+  color: #dc2626;
+  text-align: right;
+}
+
+.total-credit {
+  color: #059669;
+  text-align: right;
+}
+
+.total-solde-debiteur {
+  color: #dc2626;
+  text-align: right;
+}
+
+.total-solde-crediteur {
+  color: #059669;
+  text-align: right;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.summary-card {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.summary-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.summary-card .amount {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.summary-card .balanced {
+  color: #059669;
+}
+
+.summary-card .unbalanced {
+  color: #dc2626;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .filters-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-group {
+    width: 100%;
+  }
+  
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .balance-table {
+    font-size: 12px;
+  }
+  
+  .balance-table th,
+  .balance-table td {
+    padding: 8px 12px;
+  }
+}

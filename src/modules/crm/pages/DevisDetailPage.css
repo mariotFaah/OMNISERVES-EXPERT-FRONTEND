@@ -1,0 +1,453 @@
+/* src/modules/crm/pages/DevisDetailPage.css */
+
+/* Variables de couleurs Microsoft */
+:root {
+  --ms-primary: #0078d4;
+  --ms-primary-dark: #106ebe;
+  --ms-primary-light: #deecf9;
+  --ms-surface: #ffffff;
+  --ms-surface-alt: #faf9f8;
+  --ms-border: #edebe9;
+  --ms-border-focus: #0078d4;
+  --ms-text-primary: #323130;
+  --ms-text-secondary: #605e5c;
+  --ms-text-disabled: #a19f9d;
+  --ms-error: #d13438;
+  --ms-error-bg: #fdf6f6;
+  --ms-success: #107c10;
+  --ms-warning: #ffb900;
+  --ms-shadow: 0 1.6px 3.6px 0 rgba(0, 0, 0, 0.132), 0 0.3px 0.9px 0 rgba(0, 0, 0, 0.108);
+}
+
+/* Container principal */
+.ms-page-container {
+  background: var(--ms-surface);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* Header de page */
+.ms-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--ms-border);
+  background: var(--ms-surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.ms-header-left {
+  flex: 1;
+}
+
+.ms-back-button {
+  background: none;
+  border: none;
+  color: var(--ms-primary);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ms-back-button:hover {
+  text-decoration: underline;
+}
+
+.ms-page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin: 0 0 4px 0;
+  line-height: 32px;
+}
+
+.ms-page-subtitle {
+  font-size: 14px;
+  color: var(--ms-text-secondary);
+}
+
+.ms-header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Layout principal */
+.ms-detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Sections */
+.ms-detail-section {
+  background: var(--ms-surface);
+  border: 1px solid var(--ms-border);
+  border-radius: 2px;
+  box-shadow: var(--ms-shadow);
+  margin-bottom: 20px;
+}
+
+.ms-detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.ms-section-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--ms-border);
+  background: var(--ms-surface-alt);
+}
+
+.ms-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin: 0;
+}
+
+.ms-section-content {
+  padding: 20px;
+}
+
+/* Grille de propriétés */
+.ms-property-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ms-property {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ms-property-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ms-text-secondary);
+  flex-shrink: 0;
+  margin-right: 16px;
+}
+
+.ms-property-value {
+  font-size: 14px;
+  color: var(--ms-text-primary);
+  text-align: right;
+  word-break: break-word;
+  flex: 1;
+}
+
+.ms-link {
+  color: var(--ms-primary);
+  text-decoration: none;
+}
+
+.ms-link:hover {
+  text-decoration: underline;
+}
+
+/* Sections de description */
+.ms-description-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ms-border);
+}
+
+.ms-description-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ms-text-secondary);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.ms-description-content {
+  font-size: 14px;
+  color: var(--ms-text-primary);
+  line-height: 1.5;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* Résumé financier */
+.ms-financial-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ms-financial-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.ms-financial-row:not(:last-child) {
+  border-bottom: 1px solid var(--ms-border);
+}
+
+.ms-financial-label {
+  font-size: 14px;
+  color: var(--ms-text-secondary);
+}
+
+.ms-financial-value {
+  font-size: 14px;
+  color: var(--ms-text-primary);
+  font-weight: 500;
+}
+
+.ms-financial-total {
+  border-top: 2px solid var(--ms-border);
+  margin-top: 4px;
+  padding-top: 12px;
+}
+
+.ms-financial-total .ms-financial-label {
+  font-weight: 600;
+  color: var(--ms-text-primary);
+}
+
+.ms-financial-total .ms-financial-value {
+  font-weight: 600;
+  color: var(--ms-primary);
+  font-size: 16px;
+}
+
+/* Actions */
+.ms-actions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ms-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Boutons */
+.ms-btn {
+  padding: 8px 16px;
+  border: 1px solid;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.ms-btn-primary {
+  background: var(--ms-primary);
+  color: white;
+  border-color: var(--ms-primary);
+}
+
+.ms-btn-primary:hover:not(:disabled) {
+  background: var(--ms-primary-dark);
+  border-color: var(--ms-primary-dark);
+}
+
+.ms-btn-secondary {
+  background: transparent;
+  color: var(--ms-primary);
+  border-color: var(--ms-primary);
+}
+
+.ms-btn-secondary:hover:not(:disabled) {
+  background: var(--ms-primary-light);
+}
+
+.ms-btn-success {
+  background: var(--ms-success);
+  color: white;
+  border-color: var(--ms-success);
+}
+
+.ms-btn-success:hover:not(:disabled) {
+  background: #0d6b0d;
+  border-color: #0d6b0d;
+}
+
+.ms-btn-danger {
+  background: var(--ms-error);
+  color: white;
+  border-color: var(--ms-error);
+}
+
+.ms-btn-danger:hover:not(:disabled) {
+  background: #c02a2a;
+  border-color: #c02a2a;
+}
+
+.ms-btn-outline {
+  background: transparent;
+}
+
+.ms-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Badges */
+.ms-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ms-badge-success {
+  background: #dff6dd;
+  color: #107c10;
+}
+
+.ms-badge-warning {
+  background: #fff4ce;
+  color: #8a6d00;
+}
+
+.ms-badge-error {
+  background: #fde7e9;
+  color: #d13438;
+}
+
+.ms-badge-neutral {
+  background: #f3f2f1;
+  color: #605e5c;
+}
+
+/* Jours restants */
+.ms-jours-restants {
+  font-size: 12px;
+  color: var(--ms-warning);
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+/* États d'erreur */
+.ms-error-state {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--ms-text-secondary);
+}
+
+.ms-error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.ms-error-state h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ms-text-primary);
+  margin: 0 0 8px 0;
+}
+
+.ms-error-state p {
+  font-size: 14px;
+  margin: 0 0 20px 0;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Loading */
+.ms-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 16px;
+  color: var(--ms-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ms-detail-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .ms-detail-sidebar {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .ms-page-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+    padding: 16px;
+  }
+  
+  .ms-header-actions {
+    justify-content: flex-start;
+  }
+  
+  .ms-detail-layout {
+    padding: 16px;
+  }
+  
+  .ms-section-content {
+    padding: 16px;
+  }
+  
+  .ms-property {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .ms-property-value {
+    text-align: left;
+  }
+  
+  .ms-actions-group {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .ms-detail-layout {
+    padding: 12px;
+  }
+  
+  .ms-section-header {
+    padding: 12px 16px;
+  }
+  
+  .ms-section-content {
+    padding: 12px;
+  }
+  
+  .ms-btn {
+    width: 100%;
+  }
+}

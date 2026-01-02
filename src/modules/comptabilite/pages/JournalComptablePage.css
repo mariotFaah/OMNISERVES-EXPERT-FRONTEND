@@ -1,0 +1,431 @@
+/* src/modules/comptabilite/pages/JournalComptablePage.css */
+.journal-comptable-page {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  color: #1e293b;
+  margin: 0 0 8px 0;
+  font-size: 28px;
+}
+
+.page-header p {
+  color: #64748b;
+  margin: 0;
+}
+
+.filters-section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filters-form {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 150px;
+}
+
+/* BOUTONS MICROSOFT SAGE - MODIFIÉS */
+.search-button {
+  background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.search-button:hover {
+  background: linear-gradient(135deg, #106ebe 0%, #005a9e 100%);
+  box-shadow: 0 2px 4px rgba(0, 120, 212, 0.3);
+  transform: translateY(-1px);
+}
+
+.search-button:active {
+  background: linear-gradient(135deg, #005a9e 0%, #004578 100%);
+  transform: translateY(0);
+}
+
+.search-button:disabled {
+  background: #c7e0f4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.reset-button {
+  background: white;
+  color: #323130;
+  border: 1px solid #8a8886;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.reset-button:hover {
+  background: #f3f2f1;
+  border-color: #605e5c;
+  box-shadow: 0 2px 4px rgba(96, 94, 92, 0.2);
+  transform: translateY(-1px);
+}
+
+.reset-button:active {
+  background: #edebe9;
+  transform: translateY(0);
+}
+
+.reset-button:disabled {
+  background: #f3f2f1;
+  color: #a19f9d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Alignement horizontal des boutons */
+.filter-actions-horizontal {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Ajustement des boutons pour alignement avec les champs */
+.filter-group .search-button,
+.filter-group .reset-button {
+  margin-top: 0;
+}
+
+/* Icônes dans les boutons */
+.button-icon {
+  font-size: 14px;
+}
+
+/* Animation pour l'icône de chargement */
+.spinning-icon {
+  animation: spin 1s linear infinite;
+  font-size: 14px;
+  margin-right: 6px;
+}
+
+/* Suppression du .search-spinner redondant */
+.search-spinner {
+  display: none;
+}
+
+.results-section {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.ecritures-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.ecritures-table th {
+  background: #f8fafc;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ecritures-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ecritures-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.numero {
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+}
+
+.date {
+  white-space: nowrap;
+}
+
+.journal-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.journal-ventes {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.journal-achats {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.journal-banque {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.journal-caisse {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.compte {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+}
+
+.libelle {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.debit {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.credit {
+  color: #059669;
+  font-weight: 500;
+}
+
+.devise {
+  text-align: center;
+  font-weight: 500;
+}
+
+.no-data {
+  text-align: center;
+  color: #64748b;
+  font-style: italic;
+  padding: 40px !important;
+}
+
+.totals-row {
+  background: #f8fafc;
+  font-weight: 600;
+}
+
+.totals-label {
+  text-align: right;
+  color: #374151;
+}
+
+.total-debit {
+  color: #dc2626;
+}
+
+.total-credit {
+  color: #059669;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.summary-card {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.summary-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.summary-card .amount {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.summary-card .debit {
+  color: #dc2626;
+}
+
+.summary-card .credit {
+  color: #059669;
+}
+
+.summary-card .balanced {
+  color: #059669;
+}
+
+.summary-card .unbalanced {
+  color: #dc2626;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .filters-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-group {
+    width: 100%;
+  }
+  
+  .filter-actions-horizontal {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .filter-group .search-button,
+  .filter-group .reset-button {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quick-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-item {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  flex: 1;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.numero-badge {
+  background: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.devise-badge {
+  background: #e3f2fd;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.balance-difference {
+  font-size: 12px;
+  margin-top: 4px;
+  opacity: 0.8;
+}
+
+.no-data-content {
+  text-align: center;
+  padding: 40px;
+}
+
+.no-data-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.summary-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

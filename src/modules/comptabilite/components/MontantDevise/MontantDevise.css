@@ -1,0 +1,11 @@
+/* src/modules/comptabilite/components/MontantDevise/MontantDevise.css */
+.montant-devise {
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+}
+
+.devise-symbol {
+  margin-left: 4px;
+  font-size: 0.9em;
+  opacity: 0.8;
+}

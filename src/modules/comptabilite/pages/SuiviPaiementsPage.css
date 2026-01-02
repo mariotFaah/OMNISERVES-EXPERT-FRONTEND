@@ -1,0 +1,597 @@
+.suivi-paiements-page {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cell-actions {
+  display: flex;
+  align-items: center;
+}
+
+.btn-completer {
+  /* Mise en page */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Espace entre l'icône et le texte */
+  padding: 8px 16px;
+  
+  /* Style visuel */
+  background-color: #f0f7ff; /* Bleu très clair */
+  color: #0066cc; /* Bleu principal */
+  border: 1px solid #d0e3ff;
+  border-radius: 6px;
+  
+  /* Typographie */
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-icone {
+  font-size: 18px; /* Taille de l'icône MdOutlinePayment */
+  color: #0076b6; /* Couleur spécifique des icônes de votre capture */
+}
+
+/* Effets au survol */
+.btn-completer:hover {
+  background-color: #e0efff;
+  border-color: #0066cc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Effet au clic */
+.btn-completer:active {
+  transform: translateY(1px);
+}
+
+/* EN-TÊTE ET KPIs */
+.suivi-header {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 24px;
+}
+
+.suivi-titre h1 {
+  margin: 0 0 8px 0;
+  color: #1f2937;
+  font-size: 28px;
+}
+
+.suivi-titre p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.suivi-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.kpi-card {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  border-left: 4px solid #3b82f6;
+}
+
+.kpi-card.kpi-risque {
+  border-left-color: #dc2626;
+  background: linear-gradient(135deg, #fef2f2, #fee2e2);
+}
+
+.kpi-card.kpi-montant {
+  border-left-color: #059669;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+}
+
+.kpi-valeur {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.kpi-label {
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* SELECTION DE VUE */
+.suivi-vues {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.vue-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  color: #6b7280;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.vue-btn:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.vue-btn.active {
+  border-color: #3b82f6;
+  background: #3b82f6;
+  color: white;
+}
+
+.count-badge {
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* TABLEAUX */
+.suivi-tableau {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.suivi-tableau-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.suivi-tableau-header h3 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.filtres-periode {
+  display: flex;
+  gap: 8px;
+}
+
+.periode-btn {
+  padding: 6px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  color: #6b7280;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.periode-btn.active {
+  border-color: #3b82f6;
+  background: #3b82f6;
+  color: white;
+}
+
+.suivi-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.suivi-table th {
+  background: #f8fafc;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.suivi-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.suivi-table tr:hover {
+  background: #f9fafb;
+}
+
+/* URGENCES */
+.urgence-critique {
+  background: #fef2f2 !important;
+  border-left: 4px solid #dc2626;
+}
+
+.urgence-elevee {
+  background: #fffbeb !important;
+  border-left: 4px solid #d97706;
+}
+
+.urgence-moyenne {
+  background: #f0f9ff !important;
+  border-left: 4px solid #0ea5e9;
+}
+
+.urgence-faible {
+  background: #f0fdf4 !important;
+  border-left: 4px solid #10b981;
+}
+
+/* CELLULES SPÉCIALISÉES */
+.cell-echeance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cell-client {
+  line-height: 1.4;
+}
+
+.nom-client {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.numero-facture {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.cell-montant {
+  line-height: 1.4;
+}
+
+.montant-total {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.badge-type {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.badge-type.comptant { background: #dbeafe; color: #1e40af; }
+.badge-type.flexible { background: #f0f9ff; color: #0c4a6e; }
+.badge-type.acompte { background: #f3e8ff; color: #7e22ce; }
+
+.cell-jours {
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.cell-jours.urgence-critique { background: #fecaca; color: #dc2626; }
+.cell-jours.urgence-elevee { background: #fed7aa; color: #ea580c; }
+.cell-jours.urgence-moyenne { background: #bae6fd; color: #0ea5e9; }
+.cell-jours.urgence-faible { background: #bbf7d0; color: #16a34a; }
+
+/* BARRE DE PROGRESSION */
+.cell-progression {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.barre-progression {
+  flex: 1;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progression-remplie {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.pourcentage {
+  font-size: 14px;
+  color: #6b7280;
+  min-width: 40px;
+}
+
+/* BOUTONS D'ACTION */
+.cell-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-payer, .btn-details, .btn-relancer, .btn-appeler, .btn-payer-urgence {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-payer {
+  background: #10b981;
+  color: white;
+}
+
+.btn-payer:hover {
+  background: #059669;
+}
+
+.btn-details {
+  background: #3b82f6;
+  color: white;
+  padding: 6px 8px;
+}
+
+.btn-relancer {
+  background: #f59e0b;
+  color: white;
+}
+
+.btn-appeler {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-payer-urgence {
+  background: #dc2626;
+  color: white;
+}
+
+/* RETARDS */
+.ligne-retard {
+  background: #fef2f2 !important;
+}
+
+.niveau-retard {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.niveau-retard.critique { background: #fecaca; color: #dc2626; }
+.niveau-retard.eleve { background: #fed7aa; color: #ea580c; }
+.niveau-retard.modere { background: #fef3c7; color: #d97706; }
+
+.alerte-critique {
+  font-size: 10px;
+  background: #dc2626;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+  font-weight: bold;
+}
+
+.cell-actions-urgentes {
+  display: flex;
+  gap: 6px;
+}
+
+/* ALERTES */
+.alertes-urgentes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.alerte {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.alerte-urgence {
+  background: #fef2f2;
+  border-left-color: #dc2626;
+}
+
+.alerte-info {
+  background: #f0f9ff;
+  border-left-color: #0ea5e9;
+}
+
+.alerte-icone {
+  font-size: 20px;
+}
+
+.alerte-contenu {
+  flex: 1;
+}
+
+.alerte-action {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ÉTATS VIDES */
+.aucune-donnee {
+  padding: 40px 24px;
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.aucune-donnee.succes {
+  color: #059669;
+  font-weight: 500;
+}
+
+/* LOADING */
+.suivi-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #6b7280;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Ajoutez ces styles dans SuiviPaiementsPage.css */
+
+/* KPI Flexible */
+.kpi-card.kpi-flexible {
+  border-left: 4px solid #8b5cf6;
+  background: linear-gradient(135deg, #faf5ff, #e9d5ff);
+}
+
+.kpi-sous-titre {
+  font-size: 12px;
+  color: #7c3aed;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Performance badges */
+.stats-performance {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.performance-badge {
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.performance-label {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.performance-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Styles pour le tableau flexible */
+.type-flexible {
+  background: #8b5cf6;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.cell-date-limite.urgence-proche {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.cell-minimum {
+  text-align: center;
+}
+
+.dernier-paiement-info {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* Boutons flexibles */
+.btn-payer-flexible {
+  background: #8b5cf6;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.btn-payer-flexible:hover {
+  background: #7c3aed;
+}
+
+.btn-rappel-flexible {
+  background: #fbbf24;
+  color: #1f2937;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.btn-rappel-flexible:hover {
+  background: #f59e0b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stats-performance {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .performance-badge {
+    flex-direction: row;
+    gap: 8px;
+  }
+}
