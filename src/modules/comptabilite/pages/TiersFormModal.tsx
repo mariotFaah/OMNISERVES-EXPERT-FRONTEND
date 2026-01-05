@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TiersFormModal.css';
 import { comptabiliteApi } from '../services/api';
-import type { Tiers } from '../types';
+import type { Tiers, CreateTiersDTO } from '../types';
 import { useAlertDialog } from '../../../core/hooks/useAlertDialog';
 import AlertDialog from '../../../core/components/AlertDialog/AlertDialog';
 
@@ -12,69 +12,157 @@ interface Props {
 }
 
 // Type pour les données qu'on envoie à l'API
-type TiersApiData = Omit<Tiers, 'id_tiers' | 'created_at' | 'updated_at'> & {
-  [key: string]: any;
-};
+type TiersFormData = Omit<CreateTiersDTO, 'id_tiers' | 'created_at' | 'updated_at'>;
+
+// Liste des pays avec codes téléphoniques
+const countries = [
+  { code: 'MG', name: 'Madagascar', phoneCode: '+261', flag: '🇲🇬' },
+  { code: 'FR', name: 'France', phoneCode: '+33', flag: '🇫🇷' },
+  { code: 'US', name: 'États-Unis', phoneCode: '+1', flag: '🇺🇸' },
+  { code: 'GB', name: 'Royaume-Uni', phoneCode: '+44', flag: '🇬🇧' },
+  { code: 'DE', name: 'Allemagne', phoneCode: '+49', flag: '🇩🇪' },
+  { code: 'IT', name: 'Italie', phoneCode: '+39', flag: '🇮🇹' },
+  { code: 'ES', name: 'Espagne', phoneCode: '+34', flag: '🇪🇸' },
+  { code: 'CN', name: 'Chine', phoneCode: '+86', flag: '🇨🇳' },
+  { code: 'JP', name: 'Japon', phoneCode: '+81', flag: '🇯🇵' },
+  { code: 'ZA', name: 'Afrique du Sud', phoneCode: '+27', flag: '🇿🇦' },
+  { code: 'MU', name: 'Maurice', phoneCode: '+230', flag: '🇲🇺' },
+  { code: 'RE', name: 'Réunion', phoneCode: '+262', flag: '🇷🇪' },
+  { code: 'CA', name: 'Canada', phoneCode: '+1', flag: '🇨🇦' },
+  { code: 'BE', name: 'Belgique', phoneCode: '+32', flag: '🇧🇪' },
+  { code: 'CH', name: 'Suisse', phoneCode: '+41', flag: '🇨🇭' },
+  { code: 'SN', name: 'Sénégal', phoneCode: '+221', flag: '🇸🇳' },
+  { code: 'CI', name: 'Côte d\'Ivoire', phoneCode: '+225', flag: '🇨🇮' },
+  { code: 'ML', name: 'Mali', phoneCode: '+223', flag: '🇲🇱' },
+  { code: 'NE', name: 'Niger', phoneCode: '+227', flag: '🇳🇪' },
+  { code: 'CM', name: 'Cameroun', phoneCode: '+237', flag: '🇨🇲' },
+];
 
 export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
   // Utilisation du hook AlertDialog
   const { isOpen, message, title, type, alert, close } = useAlertDialog();
 
-  // État pour le formulaire - tous les champs du backend
-  const [form, setForm] = useState<TiersApiData>(
+  // État pour le formulaire - conforme à CreateTiersDTO
+  const [form, setForm] = useState<TiersFormData>(
     tiers ? {
       type_tiers: tiers.type_tiers || 'client',
       nom: tiers.nom || '',
-      numero: tiers.numero || '',
-      siret: tiers.siret || '',
-      forme_juridique: tiers.forme_juridique || '',
-      secteur_activite: tiers.secteur_activite || '',
-      categorie: tiers.categorie || '',
-      chiffre_affaires_annuel: tiers.chiffre_affaires_annuel || '',
-      effectif: tiers.effectif || '',
-      notes: tiers.notes || '',
-      site_web: tiers.site_web || '',
-      responsable_commercial: tiers.responsable_commercial || '',
-      date_premier_contact: tiers.date_premier_contact || '',
-      date_derniere_activite: tiers.date_derniere_activite || '',
-      adresse: tiers.adresse || '',
-      email: tiers.email || '',
-      telephone: tiers.telephone || '',
+      numero: tiers.numero || null,
+      siret: tiers.siret || null,
+      forme_juridique: tiers.forme_juridique || null,
+      secteur_activite: tiers.secteur_activite || null,
+      categorie: tiers.categorie || null,
+      chiffre_affaires_annuel: tiers.chiffre_affaires_annuel || null,
+      effectif: tiers.effectif || null,
+      notes: tiers.notes || null,
+      site_web: tiers.site_web || null,
+      responsable_commercial: tiers.responsable_commercial || null,
+      date_premier_contact: tiers.date_premier_contact || null,
+      date_derniere_activite: tiers.date_derniere_activite || null,
+      adresse: tiers.adresse || null,
+      email: tiers.email || null,
+      telephone: tiers.telephone || null,
       devise_preferee: tiers.devise_preferee || 'MGA',
     } : {
       type_tiers: 'client',
       nom: '',
-      numero: '',
-      siret: '',
-      forme_juridique: '',
-      secteur_activite: '',
-      categorie: '',
-      chiffre_affaires_annuel: '',
-      effectif: '',
-      notes: '',
-      site_web: '',
-      responsable_commercial: '',
-      date_premier_contact: '',
-      date_derniere_activite: '',
-      adresse: '',
-      email: '',
-      telephone: '',
+      numero: null,
+      siret: null,
+      forme_juridique: null,
+      secteur_activite: null,
+      categorie: null,
+      chiffre_affaires_annuel: null,
+      effectif: null,
+      notes: null,
+      site_web: null,
+      responsable_commercial: null,
+      date_premier_contact: null,
+      date_derniere_activite: null,
+      adresse: null,
+      email: null,
+      telephone: null,
       devise_preferee: 'MGA',
     }
   );
 
   const [saving, setSaving] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]); // Madagascar par défaut
+
+  // Initialiser le pays basé sur le numéro existant
+  useEffect(() => {
+    if (tiers?.telephone) {
+      const phone = tiers.telephone;
+      // Chercher le pays correspondant au code
+      const country = countries.find(c => phone.startsWith(c.phoneCode));
+      if (country) {
+        setSelectedCountry(country);
+      }
+    }
+  }, [tiers]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    
+    // Gestion spéciale pour les champs de type number
+    if (type === 'number') {
+      const numValue = value === '' ? null : Number(value);
+      setForm(prev => ({ ...prev, [name]: numValue }));
+    } else {
+      // Pour les textes, convertir "" en null
+      const cleanedValue = value === '' ? null : value;
+      setForm(prev => ({ ...prev, [name]: cleanedValue }));
+    }
+  };
+
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const countryCode = e.target.value;
+    const country = countries.find(c => c.code === countryCode) || countries[0];
+    setSelectedCountry(country);
+    
+    // Si un téléphone existe déjà, on met à jour le préfixe
+    if (form.telephone) {
+      // Enlever l'ancien préfixe si présent
+      let phoneNumber = form.telephone;
+      countries.forEach(c => {
+        if (phoneNumber?.startsWith(c.phoneCode)) {
+          phoneNumber = phoneNumber.substring(c.phoneCode.length).trim();
+        }
+      });
+      
+      // Ajouter le nouveau préfixe
+      const newPhone = phoneNumber ? `${country.phoneCode} ${phoneNumber}` : country.phoneCode;
+      setForm(prev => ({ ...prev, telephone: newPhone }));
+    }
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    
+    // Si l'utilisateur commence par "+", on recherche le pays correspondant
+    if (value.startsWith('+')) {
+      const country = countries.find(c => value.startsWith(c.phoneCode));
+      if (country) {
+        setSelectedCountry(country);
+        // On garde le format complet avec espace
+        if (value.length === country.phoneCode.length) {
+          value = `${country.phoneCode} `;
+        }
+      }
+    }
+    
+    // Si pas de préfixe, on ajoute celui du pays sélectionné
+    if (!value.startsWith('+') && value.trim()) {
+      value = `${selectedCountry.phoneCode} ${value}`;
+    }
+    
+    setForm(prev => ({ ...prev, telephone: value || null }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation des champs requis seulement
-    if (!form.nom.trim()) {
+    if (!form.nom?.trim()) {
       alert('Le nom est obligatoire', {
         type: 'warning',
         title: 'Champ manquant'
@@ -83,7 +171,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
     }
 
     // Validation de l'email si fourni
-    if (form.email && form.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       alert('Veuillez saisir une adresse email valide', {
         type: 'warning',
         title: 'Email invalide'
@@ -92,10 +180,19 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
     }
 
     // Validation du numéro de téléphone si fourni
-    if (form.telephone && form.telephone.trim() && !/^\+?\d{1,4}[\s\d-]{6,}$/.test(form.telephone)) {
+    if (form.telephone && !/^\+?\d{1,4}[\s\d-]{6,}$/.test(form.telephone.replace(/\s/g, ''))) {
       alert('Veuillez saisir un numéro de téléphone valide', {
         type: 'warning',
         title: 'Téléphone invalide'
+      });
+      return;
+    }
+
+    // Validation du SIRET si fourni (14 chiffres)
+    if (form.siret && !/^\d{14}$/.test(form.siret)) {
+      alert('Le SIRET doit contenir exactement 14 chiffres', {
+        type: 'warning',
+        title: 'SIRET invalide'
       });
       return;
     }
@@ -105,37 +202,48 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
     try {
       console.log('📤 Données envoyées:', form);
       
-      // Nettoyer les champs vides (convertir en null pour l'API)
-      const cleanForm: any = { ...form };
+      // Préparer les données pour l'API
+      const apiData: any = { ...form };
       
-      // Pour chaque champ non obligatoire, convertir les chaînes vides en null
-      const optionalFields = [
-        'siret', 'forme_juridique', 'secteur_activite', 'categorie', 
-        'chiffre_affaires_annuel', 'effectif', 'notes', 'site_web',
-        'responsable_commercial', 'date_premier_contact', 'date_derniere_activite',
-        'email', 'telephone', 'adresse', 'devise_preferee', 'reference'
-      ];
+      // Pour la création, certains champs peuvent être null
+      if (!tiers) {
+        // S'assurer que tous les champs optionnels sont null si vides
+        const optionalFields = [
+          'numero', 'siret', 'forme_juridique', 'secteur_activite', 'categorie',
+          'chiffre_affaires_annuel', 'effectif', 'notes', 'site_web',
+          'responsable_commercial', 'date_premier_contact', 'date_derniere_activite',
+          'adresse', 'email', 'telephone'
+        ];
+        
+        optionalFields.forEach(field => {
+          if (apiData[field] === '' || apiData[field] === undefined) {
+            apiData[field] = null;
+          }
+        });
+      }
       
-      optionalFields.forEach(field => {
-        if (cleanForm[field] === '' || cleanForm[field] === undefined) {
-          cleanForm[field] = null;
-        }
-      });
+      // Formatage spécial pour les dates
+      if (apiData.date_premier_contact && !apiData.date_premier_contact.includes('T')) {
+        apiData.date_premier_contact = `${apiData.date_premier_contact}T00:00:00Z`;
+      }
+      if (apiData.date_derniere_activite && !apiData.date_derniere_activite.includes('T')) {
+        apiData.date_derniere_activite = `${apiData.date_derniere_activite}T00:00:00Z`;
+      }
       
-      if (tiers && tiers.id_tiers) {
-        await comptabiliteApi.updateTiers(tiers.id_tiers, cleanForm);
+      if (tiers?.id_tiers) {
+        // Pour la mise à jour, on peut utiliser tous les champs
+        await comptabiliteApi.updateTiers(tiers.id_tiers, apiData);
         alert('Client/fournisseur modifié avec succès!', {
           type: 'success',
           title: 'Succès'
         });
-      } else if (!tiers) {
-        await comptabiliteApi.createTiers(cleanForm);
+      } else {
+        // Pour la création, on utilise CreateTiersDTO
+        await comptabiliteApi.createTiers(apiData);
         alert('Client/fournisseur créé avec succès!', {
           type: 'success',
           title: 'Succès'
         });
-      } else {
-        throw new Error('Identifiant du tiers manquant');
       }
       
       // Appeler onSave après un court délai
@@ -165,6 +273,17 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
     } finally {
       setSaving(false);
     }
+  };
+
+  // Fonction pour formater l'affichage du téléphone
+  const formatPhoneDisplay = (phone: string | null | undefined) => {
+    if (!phone) return '';
+    // Retirer le préfixe pour l'affichage dans l'input
+    const country = countries.find(c => phone.startsWith(c.phoneCode));
+    if (country) {
+      return phone.substring(country.phoneCode.length).trim();
+    }
+    return phone;
   };
 
   return (
@@ -206,7 +325,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <label className="tiers-form-label required">Nom</label>
               <input 
                 name="nom" 
-                value={form.nom} 
+                value={form.nom || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
                 placeholder="Nom complet de l'entreprise ou personne"
@@ -216,13 +335,13 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
             </div>
 
             <div className="tiers-form-group">
-              <label className="tiers-form-label">Numéro</label>
+              <label className="tiers-form-label">Numéro d'identification</label>
               <input 
                 name="numero" 
-                value={form.numero} 
+                value={form.numero || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
-                placeholder="Numéro d'identification (CLI-001, FRN-001)"
+                placeholder="CLI-001, FRN-001, etc."
                 disabled={saving}
               />
             </div>
@@ -237,7 +356,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <input 
                 name="email" 
                 type="email" 
-                value={form.email} 
+                value={form.email || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
                 placeholder="contact@entreprise.mg"
@@ -247,24 +366,46 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
 
             <div className="tiers-form-group">
               <label className="tiers-form-label">Téléphone</label>
-              <input 
-                name="telephone" 
-                value={form.telephone} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="+261 XX XX XXX XX"
-                disabled={saving}
-              />
+              <div className="phone-input-container">
+                <select 
+                  value={selectedCountry.code}
+                  onChange={handleCountryChange}
+                  className="country-select"
+                  disabled={saving}
+                >
+                  {countries.map(country => (
+                    <option key={country.code} value={country.code}>
+                      {country.flag} {country.name} ({country.phoneCode})
+                    </option>
+                  ))}
+                </select>
+                <input 
+                  name="telephone" 
+                  value={formatPhoneDisplay(form.telephone)} 
+                  onChange={handlePhoneChange} 
+                  className="tiers-form-input phone-input"
+                  placeholder={`${selectedCountry.phoneCode} XX XX XXX XX`}
+                  disabled={saving}
+                />
+              </div>
+              <div className="phone-preview">
+                {form.telephone && (
+                  <span className="phone-full">
+                    📱 Numéro complet: {form.telephone}
+                  </span>
+                )}
+              </div>
             </div>
 
             <div className="tiers-form-group">
               <label className="tiers-form-label">Adresse</label>
-              <input 
+              <textarea 
                 name="adresse" 
-                value={form.adresse} 
+                value={form.adresse || ''} 
                 onChange={handleChange} 
-                className="tiers-form-input"
+                className="tiers-form-textarea"
                 placeholder="Adresse complète"
+                rows={2}
                 disabled={saving}
               />
             </div>
@@ -273,7 +414,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <label className="tiers-form-label">Site web</label>
               <input 
                 name="site_web" 
-                value={form.site_web} 
+                value={form.site_web || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
                 placeholder="https://www.entreprise.mg"
@@ -290,10 +431,11 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <label className="tiers-form-label">SIRET/NIF</label>
               <input 
                 name="siret" 
-                value={form.siret} 
+                value={form.siret || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
-                placeholder="Numéro SIRET ou NIF"
+                placeholder="14 chiffres"
+                maxLength={14}
                 disabled={saving}
               />
             </div>
@@ -302,7 +444,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <label className="tiers-form-label">Forme juridique</label>
               <select 
                 name="forme_juridique" 
-                value={form.forme_juridique} 
+                value={form.forme_juridique || ''} 
                 onChange={handleChange} 
                 className="tiers-form-select"
                 disabled={saving}
@@ -325,7 +467,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <label className="tiers-form-label">Secteur d'activité</label>
               <input 
                 name="secteur_activite" 
-                value={form.secteur_activite} 
+                value={form.secteur_activite || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
                 placeholder="Ex: Import-Export, Commerce, Services..."
@@ -335,14 +477,19 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
 
             <div className="tiers-form-group">
               <label className="tiers-form-label">Catégorie</label>
-              <input 
+              <select 
                 name="categorie" 
-                value={form.categorie} 
+                value={form.categorie || ''} 
                 onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="Ex: Grand compte, PME, Particulier..."
+                className="tiers-form-select"
                 disabled={saving}
-              />
+              >
+                <option value="">Sélectionner...</option>
+                <option value="prospect">Prospect</option>
+                <option value="client">Client</option>
+                <option value="fournisseur">Fournisseur</option>
+                <option value="partenaire">Partenaire</option>
+              </select>
             </div>
           </div>
 
@@ -354,7 +501,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <label className="tiers-form-label">Devise préférée</label>
               <select 
                 name="devise_preferee" 
-                value={form.devise_preferee} 
+                value={form.devise_preferee || 'MGA'} 
                 onChange={handleChange} 
                 className="tiers-form-select"
                 disabled={saving}
@@ -367,13 +514,16 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
             </div>
 
             <div className="tiers-form-group">
-              <label className="tiers-form-label">CA annuel estimé</label>
+              <label className="tiers-form-label">CA annuel estimé (MGA)</label>
               <input 
                 name="chiffre_affaires_annuel" 
-                value={form.chiffre_affaires_annuel} 
+                type="number" 
+                value={form.chiffre_affaires_annuel || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
                 placeholder="Ex: 50000000"
+                min="0"
+                step="1000"
                 disabled={saving}
               />
             </div>
@@ -382,10 +532,12 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <label className="tiers-form-label">Effectif</label>
               <input 
                 name="effectif" 
-                value={form.effectif} 
+                type="number" 
+                value={form.effectif || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
                 placeholder="Nombre d'employés"
+                min="0"
                 disabled={saving}
               />
             </div>
@@ -399,7 +551,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <label className="tiers-form-label">Responsable commercial</label>
               <input 
                 name="responsable_commercial" 
-                value={form.responsable_commercial} 
+                value={form.responsable_commercial || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
                 placeholder="Nom du contact principal"
@@ -412,7 +564,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <input 
                 name="date_premier_contact" 
                 type="date" 
-                value={form.date_premier_contact} 
+                value={form.date_premier_contact || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
                 disabled={saving}
@@ -424,7 +576,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <input 
                 name="date_derniere_activite" 
                 type="date" 
-                value={form.date_derniere_activite} 
+                value={form.date_derniere_activite || ''} 
                 onChange={handleChange} 
                 className="tiers-form-input"
                 disabled={saving}
@@ -440,7 +592,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               <label className="tiers-form-label">Notes internes</label>
               <textarea 
                 name="notes" 
-                value={form.notes} 
+                value={form.notes || ''} 
                 onChange={handleChange} 
                 className="tiers-form-textarea"
                 placeholder="Notes, commentaires, informations supplémentaires..."

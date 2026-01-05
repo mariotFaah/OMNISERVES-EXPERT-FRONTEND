@@ -2,6 +2,58 @@
 import type { Tiers } from '../../../types/shared';
 export type { Tiers };
 
+// AJOUTEZ CES INTERFACES AU DÉBUT DE VOTRE FICHIER
+export interface CreateTiersDTO {
+  type_tiers: 'client' | 'fournisseur';
+  nom: string;
+  numero?: string | null;
+  siret?: string | null;
+  forme_juridique?: string | null;
+  secteur_activite?: string | null;
+  categorie?: 'prospect' | 'client' | 'fournisseur' | 'partenaire' | null;
+  chiffre_affaires_annuel?: number | null;
+  effectif?: number | null;
+  notes?: string | null;
+  site_web?: string | null;
+  responsable_commercial?: string | null;
+  date_premier_contact?: string | null;
+  date_derniere_activite?: string | null;
+  adresse?: string | null;
+  email?: string | null;
+  telephone?: string | null;
+  devise_preferee?: string; // DEFAULT 'MGA'
+  reference?: string; // Champ frontend seulement
+}
+
+export interface UpdateTiersDTO {
+  type_tiers?: 'client' | 'fournisseur';
+  nom?: string;
+  numero?: string | null;
+  siret?: string | null;
+  forme_juridique?: string | null;
+  secteur_activite?: string | null;
+  categorie?: 'prospect' | 'client' | 'fournisseur' | 'partenaire' | null;
+  chiffre_affaires_annuel?: number | null;
+  effectif?: number | null;
+  notes?: string | null;
+  site_web?: string | null;
+  responsable_commercial?: string | null;
+  date_premier_contact?: string | null;
+  date_derniere_activite?: string | null;
+  adresse?: string | null;
+  email?: string | null;
+  telephone?: string | null;
+  devise_preferee?: string;
+  reference?: string; // Champ frontend seulement
+}
+
+// Interface pour la réponse de l'API Tiers
+export interface TiersResponse {
+  success: boolean;
+  message: string;
+  data: Tiers | Tiers[];
+  timestamp?: string;
+}
 export interface PaiementFlexibleConfig {
   type_paiement: 'comptant' | 'flexible' | 'acompte' | 'echeance';
   date_finale_paiement: string; 

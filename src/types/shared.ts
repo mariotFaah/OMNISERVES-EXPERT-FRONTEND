@@ -1,27 +1,76 @@
 // src/types/shared.ts
 export interface Tiers {
-  id_tiers: number;  // Identifiant principal
-  nom: string;       // Nom obligatoire
-  type_tiers: 'client' | 'fournisseur';  // Type obligatoire et typé
-  numero: string;    // Numéro obligatoire (ex: SIRET, NIF...)
-  adresse: string;   // Adresse obligatoire
-  email?: string;    // Email optionnel
-  telephone?: string; // Téléphone optionnel
-  devise_preferee?: string; // Devise préférée optionnelle
-  reference?: string; // Référence optionnelle
+  // Champs de la table tiers (exactement comme dans la base)
+  id_tiers?: number;  // AUTO_INCREMENT, optionnel à la création
+  type_tiers: 'client' | 'fournisseur';
+  nom: string;
+  numero?: string | null;
+  siret?: string | null;
+  forme_juridique?: string | null;
+  secteur_activite?: string | null;
+  categorie?: 'prospect' | 'client' | 'fournisseur' | 'partenaire' | null;
+  chiffre_affaires_annuel?: number | null;
+  effectif?: number | null;
+  notes?: string | null;
+  site_web?: string | null;
+  responsable_commercial?: string | null;
+  date_premier_contact?: string | null; // Format: 'YYYY-MM-DD'
+  date_derniere_activite?: string | null; // Format: 'YYYY-MM-DD'
+  adresse?: string | null;
+  email?: string | null;
+  telephone?: string | null;
+  created_at?: string; // Format: 'YYYY-MM-DD HH:MM:SS'
+  updated_at?: string; // Format: 'YYYY-MM-DD HH:MM:SS'
+  devise_preferee?: string; // DEFAULT 'MGA'
   
-  // Nouveaux champs ajoutés
-  siret?: string;                     // SIRET/NIF optionnel
-  forme_juridique?: string;           // Forme juridique optionnelle
-  secteur_activite?: string;          // Secteur d'activité optionnel
-  categorie?: string;                 // Catégorie optionnelle
-  chiffre_affaires_annuel?: string | number; // CA annuel optionnel
-  effectif?: string | number;         // Effectif optionnel
-  notes?: string;                     // Notes internes optionnelles
-  site_web?: string;                  // Site web optionnel
-  responsable_commercial?: string;    // Responsable commercial optionnel
-  date_premier_contact?: string;      // Date premier contact optionnelle
-  date_derniere_activite?: string;    // Date dernière activité optionnelle
-  created_at?: string;                // Date de création
-  updated_at?: string;                // Date de modification
+  // Champs optionnels du frontend (n'existent pas dans la base mais peuvent être utiles)
+  reference?: string; // Utilisé dans le frontend mais pas dans la base
+  selected?: boolean; // Pour la sélection dans l'UI
+  loading?: boolean;  // Pour les états de chargement
+}
+
+// Interface pour la création (sans id_tiers et champs auto-générés)
+export interface CreateTiersDTO {
+  type_tiers: 'client' | 'fournisseur';
+  nom: string;
+  numero?: string | null;
+  siret?: string | null;
+  forme_juridique?: string | null;
+  secteur_activite?: string | null;
+  categorie?: 'prospect' | 'client' | 'fournisseur' | 'partenaire' | null;
+  chiffre_affaires_annuel?: number | null;
+  effectif?: number | null;
+  notes?: string | null;
+  site_web?: string | null;
+  responsable_commercial?: string | null;
+  date_premier_contact?: string | null;
+  date_derniere_activite?: string | null;
+  adresse?: string | null;
+  email?: string | null;
+  telephone?: string | null;
+  devise_preferee?: string; // DEFAULT 'MGA'
+  reference?: string; // Champ frontend seulement
+}
+
+// Interface pour la mise à jour (tous les champs optionnels)
+export interface UpdateTiersDTO {
+  type_tiers?: 'client' | 'fournisseur';
+  nom?: string;
+  numero?: string | null;
+  siret?: string | null;
+  forme_juridique?: string | null;
+  secteur_activite?: string | null;
+  categorie?: 'prospect' | 'client' | 'fournisseur' | 'partenaire' | null;
+  chiffre_affaires_annuel?: number | null;
+  effectif?: number | null;
+  notes?: string | null;
+  site_web?: string | null;
+  responsable_commercial?: string | null;
+  date_premier_contact?: string | null;
+  date_derniere_activite?: string | null;
+  adresse?: string | null;
+  email?: string | null;
+  telephone?: string | null;
+  devise_preferee?: string;
+  reference?: string; // Champ frontend seulement
 }

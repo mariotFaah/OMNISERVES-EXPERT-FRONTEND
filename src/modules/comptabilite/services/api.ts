@@ -35,7 +35,62 @@ export interface StockAlerte {
   priorite: 'faible' | 'rupture';
 }
 
+// ✅ FONCTIONS HELPER AMÉLIORÉES
+const extractObject = (response: any): any => {
+  console.log('🔍 extractObject - Response structure:', {
+    status: response.status,
+    data: response.data,
+    hasSuccess: response.data?.success,
+    hasData: response.data?.data !== undefined,
+    dataType: typeof response.data?.data,
+    isArray: Array.isArray(response.data?.data)
+  });
+  
+  // Priorité 1: response.data.data (standard)
+  if (response.data?.data !== undefined) {
+    console.log('✅ Extraction depuis response.data.data');
+    return response.data.data;
+  }
+  
+  // Priorité 2: response.data (fallback)
+  console.log('⚠️ Extraction depuis response.data (fallback)');
+  return response.data;
+};
+
+const extractData = (response: any): any[] => {
+  console.log('🔍 extractData - Response structure:', {
+    status: response.status,
+    data: response.data,
+    hasData: response.data?.data !== undefined,
+    isDataArray: Array.isArray(response.data?.data)
+  });
+  
+  // Priorité 1: response.data.data est un tableau
+  if (response.data?.data !== undefined && Array.isArray(response.data.data)) {
+    console.log(`✅ Extraction ${response.data.data.length} éléments depuis response.data.data`);
+    return response.data.data;
+  }
+  
+  // Priorité 2: response.data est un tableau
+  if (Array.isArray(response.data)) {
+    console.log(`✅ Extraction ${response.data.length} éléments depuis response.data`);
+    return response.data;
+  }
+  
+  // Priorité 3: response.data.message est un tableau
+  if (response.data?.message !== undefined && Array.isArray(response.data.message)) {
+    console.log(`✅ Extraction ${response.data.message.length} éléments depuis response.data.message`);
+    return response.data.message;
+  }
+  
+  console.warn('⚠️ Aucun tableau trouvé, retourne tableau vide');
+  return [];
+};
+
+// ✅ Fonction pour logger les erreu
+
 // ✅ FONCTION HELPER pour extraire les données de la réponse
+/*
 const extractData = (response: any): any[] => {
   console.log('📊 Structure de la réponse:', response.data);
   
@@ -63,7 +118,7 @@ const extractObject = (response: any): any => {
   
   return response.data;
 };
-
+*/
 export const comptabiliteApi = {
   // ---- Tiers API ----
   getTiers: async (): Promise<Tiers[]> => {
