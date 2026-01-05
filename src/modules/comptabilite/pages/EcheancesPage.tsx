@@ -31,12 +31,14 @@ export const EcheancesPage: React.FC = () => {
       
       // Fusionner les emails des tiers avec les factures
       const echeancesAvecEmails = facturesData.map(facture => {
-        const tierCorrespondant = tiersData.find(t => t.nom === facture.nom_tiers);
-        return {
-          ...facture,
-          email: tierCorrespondant?.email 
-        };
-      });
+  const tierCorrespondant = tiersData.find(t => t.nom === facture.nom_tiers);
+  const email = tierCorrespondant?.email;
+  
+  return {
+    ...facture,
+    email: email === null ? undefined : email
+  } as Facture; // Cast explicite
+});
       
       const aujourdhui = new Date().toISOString().split('T')[0];
       const echeancesDepassees = echeancesAvecEmails.filter(facture => 
@@ -306,7 +308,7 @@ export const EcheancesPage: React.FC = () => {
                   <td>
                     <div className={`email-status ${aUnEmail ? 'avec-email' : 'sans-email'}`}>
                       {aUnEmail ? (
-                        <span title={facture.email}>📧 {facture.email}</span>
+                        <span title={facture.email || ''}>📧 {facture.email}</span>
                       ) : (
                         <span className="pas-d-email">❌ Aucun email</span>
                       )}

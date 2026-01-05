@@ -159,7 +159,7 @@ export interface Facture {
   statut: 'brouillon' | 'validee' | 'annulee' | 'payee' | 'partiellement_payee' | 'en_retard' | 'non_payee';
   nom_tiers?: string;
   adresse?: string;
-  email?: string;
+ email?: string | null;
   telephone?: string;
   telephone_tiers?: string; 
   type_tiers?: 'client' | 'fournisseur';

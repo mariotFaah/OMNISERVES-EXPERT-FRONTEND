@@ -4,6 +4,26 @@ import { comptabiliteApi } from '../services/api';
 import type { Tiers, CreateTiersDTO } from '../types';
 import { useAlertDialog } from '../../../core/hooks/useAlertDialog';
 import AlertDialog from '../../../core/components/AlertDialog/AlertDialog';
+import { 
+  FiUser, 
+  FiTruck, 
+  FiMail, 
+  FiPhone, 
+  FiMapPin, 
+  FiGlobe, 
+  FiBriefcase, 
+  FiDollarSign, 
+  FiUsers, 
+  FiFileText, 
+  FiCalendar,
+  FiUserCheck,
+  FiX,
+  FiSave,
+  FiPlus
+} from 'react-icons/fi';
+import { MdBusiness, MdCategory, MdAttachMoney } from 'react-icons/md';
+import { HiOutlineIdentification } from 'react-icons/hi';
+import { BiBuildings } from 'react-icons/bi';
 
 interface Props {
   tiers: Tiers | null;
@@ -297,108 +317,124 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
             onClick={onClose}
             disabled={saving}
           >
-            ✕
+            <FiX />
           </button>
         </div>
         
         <form onSubmit={handleSubmit}>
-          {/* Informations de base */}
-          <div className="tiers-section">
-            <h3 className="tiers-section-title">Informations de base</h3>
+          {/* Section 1: Informations principales (OBLIGATOIRES) */}
+          <div className="tiers-section mandatory-section">
+            <h3 className="tiers-section-title">
+              <FiUser className="section-icon" />
+              Informations principales <span className="required-badge">OBLIGATOIRES</span>
+            </h3>
             
-            <div className="tiers-form-group">
-              <label className="tiers-form-label required">Type</label>
-              <select 
-                name="type_tiers" 
-                value={form.type_tiers} 
-                onChange={handleChange} 
-                className="tiers-form-select"
-                required
-                disabled={saving}
-              >
-                <option value="client">👤 Client</option>
-                <option value="fournisseur">🚚 Fournisseur</option>
-              </select>
-            </div>
-
-            <div className="tiers-form-group">
-              <label className="tiers-form-label required">Nom</label>
-              <input 
-                name="nom" 
-                value={form.nom || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="Nom complet de l'entreprise ou personne"
-                required
-                disabled={saving}
-              />
-            </div>
-
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Numéro d'identification</label>
-              <input 
-                name="numero" 
-                value={form.numero || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="CLI-001, FRN-001, etc."
-                disabled={saving}
-              />
-            </div>
-          </div>
-
-          {/* Coordonnées */}
-          <div className="tiers-section">
-            <h3 className="tiers-section-title">Coordonnées</h3>
-            
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Email</label>
-              <input 
-                name="email" 
-                type="email" 
-                value={form.email || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="contact@entreprise.mg"
-                disabled={saving}
-              />
-            </div>
-
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Téléphone</label>
-              <div className="phone-input-container">
-                <select 
-                  value={selectedCountry.code}
-                  onChange={handleCountryChange}
-                  className="country-select"
-                  disabled={saving}
-                >
-                  {countries.map(country => (
-                    <option key={country.code} value={country.code}>
-                      {country.flag} {country.name} ({country.phoneCode})
-                    </option>
-                  ))}
-                </select>
+            <div className="form-grid">
+              <div className="tiers-form-group">
+                <label className="tiers-form-label required">
+                  <HiOutlineIdentification className="input-icon" />
+                  Numéro client/fournisseur
+                </label>
                 <input 
-                  name="telephone" 
-                  value={formatPhoneDisplay(form.telephone)} 
-                  onChange={handlePhoneChange} 
-                  className="tiers-form-input phone-input"
-                  placeholder={`${selectedCountry.phoneCode} XX XX XXX XX`}
+                  name="numero" 
+                  value={form.numero || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  placeholder={form.type_tiers === 'client' ? 'CLI-001' : 'FRN-001'}
+                  required
                   disabled={saving}
                 />
               </div>
-              <div className="phone-preview">
-                {form.telephone && (
-                  <span className="phone-full">
-                    📱 Numéro complet: {form.telephone}
-                  </span>
-                )}
+
+              <div className="tiers-form-group">
+                <label className="tiers-form-label required">
+                  <FiUser className="input-icon" />
+                  Nom
+                </label>
+                <input 
+                  name="nom" 
+                  value={form.nom || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  placeholder="Nom complet de l'entreprise ou personne"
+                  required
+                  disabled={saving}
+                />
+              </div>
+
+              <div className="tiers-form-group">
+                <label className="tiers-form-label required">
+                  <FiUser className="input-icon" />
+                  Type
+                </label>
+                <select 
+                  name="type_tiers" 
+                  value={form.type_tiers} 
+                  onChange={handleChange} 
+                  className="tiers-form-select"
+                  required
+                  disabled={saving}
+                >
+                  <option value="client"><FiUser /> Client</option>
+                  <option value="fournisseur"><FiTruck /> Fournisseur</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="form-grid">
+              <div className="tiers-form-group">
+                <label className="tiers-form-label required">
+                  <FiMail className="input-icon" />
+                  Email
+                </label>
+                <input 
+                  name="email" 
+                  type="email" 
+                  value={form.email || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  placeholder="contact@entreprise.mg"
+                  required
+                  disabled={saving}
+                />
+              </div>
+
+              <div className="tiers-form-group">
+                <label className="tiers-form-label required">
+                  <FiPhone className="input-icon" />
+                  Téléphone
+                </label>
+                <div className="phone-input-container">
+                  <select 
+                    value={selectedCountry.code}
+                    onChange={handleCountryChange}
+                    className="country-select"
+                    disabled={saving}
+                  >
+                    {countries.map(country => (
+                      <option key={country.code} value={country.code}>
+                        {country.flag} {country.name} ({country.phoneCode})
+                      </option>
+                    ))}
+                  </select>
+                  <input 
+                    name="telephone" 
+                    value={formatPhoneDisplay(form.telephone)} 
+                    onChange={handlePhoneChange} 
+                    className="tiers-form-input phone-input"
+                    placeholder={`${selectedCountry.phoneCode} XX XX XXX XX`}
+                    required
+                    disabled={saving}
+                  />
+                </div>
               </div>
             </div>
 
             <div className="tiers-form-group">
-              <label className="tiers-form-label">Adresse</label>
+              <label className="tiers-form-label required">
+                <FiMapPin className="input-icon" />
+                Adresse
+              </label>
               <textarea 
                 name="adresse" 
                 value={form.adresse || ''} 
@@ -406,190 +442,249 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
                 className="tiers-form-textarea"
                 placeholder="Adresse complète"
                 rows={2}
-                disabled={saving}
-              />
-            </div>
-
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Site web</label>
-              <input 
-                name="site_web" 
-                value={form.site_web || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="https://www.entreprise.mg"
+                required
                 disabled={saving}
               />
             </div>
           </div>
 
-          {/* Informations juridiques (optionnelles) */}
-          <div className="tiers-section">
-            <h3 className="tiers-section-title">Informations juridiques (optionnelles)</h3>
+          {/* Section 2: Informations juridiques (FACULTATIVES) */}
+          <div className="tiers-section optional-section">
+            <h3 className="tiers-section-title">
+              <MdBusiness className="section-icon" />
+              Informations juridiques <span className="optional-badge">FACULTATIVES</span>
+            </h3>
             
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">SIRET/NIF</label>
-              <input 
-                name="siret" 
-                value={form.siret || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="14 chiffres"
-                maxLength={14}
-                disabled={saving}
-              />
+            <div className="form-grid">
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <HiOutlineIdentification className="input-icon" />
+                  SIRET/NIF
+                </label>
+                <input 
+                  name="siret" 
+                  value={form.siret || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  placeholder="14 chiffres"
+                  maxLength={14}
+                  disabled={saving}
+                />
+              </div>
+
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <BiBuildings className="input-icon" />
+                  Forme juridique
+                </label>
+                <select 
+                  name="forme_juridique" 
+                  value={form.forme_juridique || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-select"
+                  disabled={saving}
+                >
+                  <option value="">Sélectionner...</option>
+                  <option value="SARL">SARL</option>
+                  <option value="SA">SA</option>
+                  <option value="SAS">SAS</option>
+                  <option value="SASU">SASU</option>
+                  <option value="EI">Entreprise Individuelle</option>
+                  <option value="EURL">EURL</option>
+                  <option value="SNC">SNC</option>
+                  <option value="SC">Société Civile</option>
+                  <option value="association">Association</option>
+                  <option value="autre">Autre</option>
+                </select>
+              </div>
             </div>
 
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Forme juridique</label>
-              <select 
-                name="forme_juridique" 
-                value={form.forme_juridique || ''} 
-                onChange={handleChange} 
-                className="tiers-form-select"
-                disabled={saving}
-              >
-                <option value="">Sélectionner...</option>
-                <option value="SARL">SARL</option>
-                <option value="SA">SA</option>
-                <option value="SAS">SAS</option>
-                <option value="SASU">SASU</option>
-                <option value="EI">Entreprise Individuelle</option>
-                <option value="EURL">EURL</option>
-                <option value="SNC">SNC</option>
-                <option value="SC">Société Civile</option>
-                <option value="association">Association</option>
-                <option value="autre">Autre</option>
-              </select>
-            </div>
+            <div className="form-grid">
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <FiBriefcase className="input-icon" />
+                  Secteur d'activité
+                </label>
+                <input 
+                  name="secteur_activite" 
+                  value={form.secteur_activite || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  placeholder="Ex: Import-Export, Commerce, Services..."
+                  disabled={saving}
+                />
+              </div>
 
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Secteur d'activité</label>
-              <input 
-                name="secteur_activite" 
-                value={form.secteur_activite || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="Ex: Import-Export, Commerce, Services..."
-                disabled={saving}
-              />
-            </div>
-
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Catégorie</label>
-              <select 
-                name="categorie" 
-                value={form.categorie || ''} 
-                onChange={handleChange} 
-                className="tiers-form-select"
-                disabled={saving}
-              >
-                <option value="">Sélectionner...</option>
-                <option value="prospect">Prospect</option>
-                <option value="client">Client</option>
-                <option value="fournisseur">Fournisseur</option>
-                <option value="partenaire">Partenaire</option>
-              </select>
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <MdCategory className="input-icon" />
+                  Catégorie
+                </label>
+                <select 
+                  name="categorie" 
+                  value={form.categorie || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-select"
+                  disabled={saving}
+                >
+                  <option value="">Sélectionner...</option>
+                  <option value="prospect">Prospect</option>
+                  <option value="client">Client</option>
+                  <option value="fournisseur">Fournisseur</option>
+                  <option value="partenaire">Partenaire</option>
+                </select>
+              </div>
             </div>
           </div>
 
-          {/* Informations financières (optionnelles) */}
-          <div className="tiers-section">
-            <h3 className="tiers-section-title">Informations financières (optionnelles)</h3>
+          {/* Section 3: Informations financières (FACULTATIVES) */}
+          <div className="tiers-section optional-section">
+            <h3 className="tiers-section-title">
+              <MdAttachMoney className="section-icon" />
+              Informations financières <span className="optional-badge">FACULTATIVES</span>
+            </h3>
             
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Devise préférée</label>
-              <select 
-                name="devise_preferee" 
-                value={form.devise_preferee || 'MGA'} 
-                onChange={handleChange} 
-                className="tiers-form-select"
-                disabled={saving}
-              >
-                <option value="MGA">MGA - Ariary Malagasy</option>
-                <option value="EUR">EUR - Euro</option>
-                <option value="USD">USD - Dollar US</option>
-                <option value="GBP">GBP - Livre Sterling</option>
-              </select>
-            </div>
+            <div className="form-grid">
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <FiDollarSign className="input-icon" />
+                  Devise préférée
+                </label>
+                <select 
+                  name="devise_preferee" 
+                  value={form.devise_preferee || 'MGA'} 
+                  onChange={handleChange} 
+                  className="tiers-form-select"
+                  disabled={saving}
+                >
+                  <option value="MGA">MGA - Ariary Malagasy</option>
+                  <option value="EUR">EUR - Euro</option>
+                  <option value="USD">USD - Dollar US</option>
+                  <option value="GBP">GBP - Livre Sterling</option>
+                </select>
+              </div>
 
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">CA annuel estimé (MGA)</label>
-              <input 
-                name="chiffre_affaires_annuel" 
-                type="number" 
-                value={form.chiffre_affaires_annuel || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="Ex: 50000000"
-                min="0"
-                step="1000"
-                disabled={saving}
-              />
-            </div>
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <FiDollarSign className="input-icon" />
+                  CA annuel estimé (MGA)
+                </label>
+                <input 
+                  name="chiffre_affaires_annuel" 
+                  type="number" 
+                  value={form.chiffre_affaires_annuel || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  placeholder="Ex: 50000000"
+                  min="0"
+                  step="1000"
+                  disabled={saving}
+                />
+              </div>
 
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Effectif</label>
-              <input 
-                name="effectif" 
-                type="number" 
-                value={form.effectif || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="Nombre d'employés"
-                min="0"
-                disabled={saving}
-              />
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <FiUsers className="input-icon" />
+                  Effectif
+                </label>
+                <input 
+                  name="effectif" 
+                  type="number" 
+                  value={form.effectif || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  placeholder="Nombre d'employés"
+                  min="0"
+                  disabled={saving}
+                />
+              </div>
             </div>
           </div>
 
-          {/* Contacts et suivi (optionnels) */}
-          <div className="tiers-section">
-            <h3 className="tiers-section-title">Contacts et suivi (optionnels)</h3>
+          {/* Section 4: Contacts et suivi (FACULTATIVES) */}
+          <div className="tiers-section optional-section">
+            <h3 className="tiers-section-title">
+              <FiUserCheck className="section-icon" />
+              Contacts et suivi <span className="optional-badge">FACULTATIVES</span>
+            </h3>
             
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Responsable commercial</label>
-              <input 
-                name="responsable_commercial" 
-                value={form.responsable_commercial || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                placeholder="Nom du contact principal"
-                disabled={saving}
-              />
-            </div>
+            <div className="form-grid">
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <FiUserCheck className="input-icon" />
+                  Responsable commercial
+                </label>
+                <input 
+                  name="responsable_commercial" 
+                  value={form.responsable_commercial || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  placeholder="Nom du contact principal"
+                  disabled={saving}
+                />
+              </div>
 
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Date premier contact</label>
-              <input 
-                name="date_premier_contact" 
-                type="date" 
-                value={form.date_premier_contact || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                disabled={saving}
-              />
-            </div>
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <FiCalendar className="input-icon" />
+                  Date premier contact
+                </label>
+                <input 
+                  name="date_premier_contact" 
+                  type="date" 
+                  value={form.date_premier_contact || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  disabled={saving}
+                />
+              </div>
 
-            <div className="tiers-form-group">
-              <label className="tiers-form-label">Date dernière activité</label>
-              <input 
-                name="date_derniere_activite" 
-                type="date" 
-                value={form.date_derniere_activite || ''} 
-                onChange={handleChange} 
-                className="tiers-form-input"
-                disabled={saving}
-              />
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <FiCalendar className="input-icon" />
+                  Date dernière activité
+                </label>
+                <input 
+                  name="date_derniere_activite" 
+                  type="date" 
+                  value={form.date_derniere_activite || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  disabled={saving}
+                />
+              </div>
             </div>
           </div>
 
-          {/* Notes (optionnelles) */}
-          <div className="tiers-section">
-            <h3 className="tiers-section-title">Notes (optionnelles)</h3>
+          {/* Section 5: Informations complémentaires (FACULTATIVES) */}
+          <div className="tiers-section optional-section">
+            <h3 className="tiers-section-title">
+              <FiFileText className="section-icon" />
+              Informations complémentaires <span className="optional-badge">FACULTATIVES</span>
+            </h3>
             
+            <div className="form-grid">
+              <div className="tiers-form-group">
+                <label className="tiers-form-label">
+                  <FiGlobe className="input-icon" />
+                  Site web
+                </label>
+                <input 
+                  name="site_web" 
+                  value={form.site_web || ''} 
+                  onChange={handleChange} 
+                  className="tiers-form-input"
+                  placeholder="https://www.entreprise.mg"
+                  disabled={saving}
+                />
+              </div>
+            </div>
+
             <div className="tiers-form-group">
-              <label className="tiers-form-label">Notes internes</label>
+              <label className="tiers-form-label">
+                <FiFileText className="input-icon" />
+                Notes internes
+              </label>
               <textarea 
                 name="notes" 
                 value={form.notes || ''} 
@@ -609,7 +704,7 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
               onClick={onClose}
               disabled={saving}
             >
-              Annuler
+              <FiX /> Annuler
             </button>
             <button 
               type="submit" 
@@ -622,7 +717,10 @@ export const TiersFormModal: React.FC<Props> = ({ tiers, onClose, onSave }) => {
                   {tiers ? 'Modification...' : 'Création...'}
                 </>
               ) : (
-                tiers ? '💾 Modifier' : '➕ Créer'
+                <>
+                  {tiers ? <FiSave /> : <FiPlus />}
+                  {tiers ? 'Modifier' : 'Créer'}
+                </>
               )}
             </button>
           </div>

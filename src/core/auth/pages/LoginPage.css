@@ -1,4 +1,44 @@
 /* src/core/auth/pages/LoginPage.css */
+
+/* === CORRECTION VISIBILITÉ TEXTES INPUT === */
+.form-input,
+.form-input.with-icon {
+  color: #333 !important;
+  background: #f8f9fa !important;
+  border: 2px solid #e0e0e0 !important;
+}
+
+.form-input::placeholder,
+.form-input.with-icon::placeholder {
+  color: #666 !important;
+  opacity: 0.8 !important;
+}
+
+.form-input:focus,
+.form-input.with-icon:focus {
+  color: #333 !important;
+  background: white !important;
+  border-color: #1a237e !important;
+  box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1) !important;
+}
+
+/* Assurer que tous les textes sont visibles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #333 !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Icônes */
+.input-icon-left {
+  color: #666 !important;
+}
+
+.form-input.with-icon:focus ~ .input-icon-left {
+  color: #1a237e !important;
+}
 .login-container {
   min-height: 100vh;
   display: flex;
