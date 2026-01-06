@@ -1,4 +1,6 @@
 // Types pour le système d'authentification
+
+// Interface de base pour l'utilisateur
 export interface User {
   id: number;
   email: string;
@@ -9,11 +11,19 @@ export interface User {
   is_active?: boolean;
   last_login?: string;
   created_at?: string;
-  // Supprimez code_role ou ajoutez-le si nécessaire
-  // code_role?: string; // Décommentez si vous en avez besoin
+  updated_at?: string;
 }
 
-// Ajoutez ces interfaces pour les permissions
+// Interface pour l'utilisateur avec toutes les données complètes (retour API)
+export interface UserFull extends User {
+  id_user?: number;
+  password_hash?: string;
+  id_role?: number;
+  code_role?: string;
+  role_description?: string;
+}
+
+// Permissions
 export interface Permission {
   module: string;
   actions: string[];
@@ -23,27 +33,18 @@ export interface UserWithPermissions extends User {
   permissions?: Permission[];
 }
 
+// Données de connexion
 export interface LoginCredentials {
   email: string;
   password: string;
 }
 
+// Réponses API génériques
 export interface ApiResponse<T = any> {
   success: boolean;
   message: string;
   data: T;
   timestamp?: string;
-}
-
-export interface LoginResponse {
-  user: User;
-  token: string;
-}
-
-export interface AuthResponse {
-  success: boolean;
-  message: string;
-  data: LoginResponse;
 }
 
 export interface ApiError {
@@ -53,7 +54,22 @@ export interface ApiError {
   statusCode?: number;
 }
 
-// Types pour la gestion des utilisateurs (admin)
+// Réponses spécifiques
+export interface LoginResponse {
+  user: User;
+  token: string;
+}
+
+export interface ValidateTokenResponse {
+  success: boolean;
+  message: string;
+  data: {
+    user: User;
+    isValid: boolean;
+  };
+}
+
+// Gestion des utilisateurs
 export interface CreateUserData {
   email: string;
   password: string;
@@ -64,13 +80,24 @@ export interface CreateUserData {
 
 export interface UpdateUserData {
   email?: string;
+  password?: string;
   nom?: string;
   prenom?: string;
   role?: 'admin' | 'comptable' | 'commercial';
+  is_active?: boolean;
 }
 
 export interface UserListResponse {
   users: User[];
+}
+
+// Réponses API pour les utilisateurs
+export interface CreateUserResponse {
+  user: UserFull;
+}
+
+export interface UpdateUserResponse {
+  user: UserFull;
 }
 
 // État d'authentification
@@ -81,18 +108,16 @@ export interface AuthState {
   isLoading: boolean;
 }
 
-// Ajoutez cette interface
-export interface ValidateTokenResponse {
-  success: boolean;
-  message: string;
-  data: {
-    user: User;
-    isValid: boolean;
-  };
-}
-
+// Type pour le contexte d'authentification
 export interface AuthContextType extends AuthState {
   login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => void;
   validateToken: () => Promise<boolean>;
+  fetchUsers: () => Promise<User[]>;
+  createUser: (userData: CreateUserData) => Promise<User>;
+  updateUser: (id: number, userData: UpdateUserData) => Promise<User>;
+  toggleUserStatus: (id: number, activate: boolean) => Promise<void>;
+  getUserById?: (id: number) => Promise<User>;
+  hasPermission: (module: string, action: string) => boolean;
+  hasRole: (role: User['role']) => boolean;
 }

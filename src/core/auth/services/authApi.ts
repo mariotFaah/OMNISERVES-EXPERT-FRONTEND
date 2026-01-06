@@ -4,7 +4,8 @@ import type {
   LoginResponse, 
   ValidateTokenResponse, 
   User,
-  LoginCredentials 
+  LoginCredentials ,CreateUserData,  
+  UpdateUserData 
 } from '../types';
 import api from '../../../core/config/axios';
 
@@ -81,4 +82,65 @@ export const authApi = {
       throw new Error(error.response?.data?.message || 'Token invalide');
     }
   },
+
+  // ✅ AJOUTER CES MÉTHODES POUR LA GESTION DES UTILISATEURS
+  // Récupérer tous les utilisateurs
+  async getUsers(): Promise<ApiResponse<User[]>> {
+    try {
+      const response = await api.get('/auth/users');
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || 'Erreur de récupération des utilisateurs');
+    }
+  },
+
+  // Créer un utilisateur
+  async createUser(userData: CreateUserData): Promise<ApiResponse<User>> {
+    try {
+      const response = await api.post('/auth/users', userData);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || 'Erreur de création d\'utilisateur');
+    }
+  },
+
+  // Mettre à jour un utilisateur
+  async updateUser(id: number, userData: UpdateUserData): Promise<ApiResponse<User>> {
+    try {
+      const response = await api.put(`/auth/users/${id}`, userData);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || 'Erreur de mise à jour d\'utilisateur');
+    }
+  },
+
+  // Désactiver un utilisateur
+  async deactivateUser(id: number): Promise<ApiResponse<void>> {
+    try {
+      const response = await api.patch(`/auth/users/${id}/deactivate`);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || 'Erreur de désactivation d\'utilisateur');
+    }
+  },
+
+  // Activer un utilisateur
+  async activateUser(id: number): Promise<ApiResponse<void>> {
+    try {
+      const response = await api.patch(`/auth/users/${id}/activate`);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || 'Erreur d\'activation d\'utilisateur');
+    }
+  },
+
+  // Récupérer un utilisateur par ID
+  async getUserById(id: number): Promise<ApiResponse<User>> {
+    try {
+      const response = await api.get(`/auth/users/${id}`);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || 'Erreur de récupération de l\'utilisateur');
+    }
+  }
 };
