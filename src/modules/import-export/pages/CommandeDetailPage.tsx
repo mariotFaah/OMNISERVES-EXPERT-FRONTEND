@@ -5,6 +5,8 @@ import type { Commande, CalculMarge, ExpeditionFormData } from '../types';
 import { useAlertDialog } from '../../../core/hooks/useAlertDialog';
 import AlertDialog from '../../../core/components/AlertDialog/AlertDialog';
 import './CommandeDetailPage.css';
+import ExportPDFCommande from '../components/ExportPDFCommande/ExportPDFCommande';
+
 
 const CommandeDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -188,6 +190,7 @@ const CommandeDetailPage: React.FC = () => {
             </div>
           </div>
           <div className="header-actions">
+            {commande && <ExportPDFCommande commande={commande} marge={marge} className="btn-secondary" />}
             <button className="btn btn-secondary">
               📄 Imprimer
             </button>

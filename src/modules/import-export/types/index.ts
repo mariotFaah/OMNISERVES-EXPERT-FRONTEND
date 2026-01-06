@@ -16,6 +16,7 @@ export interface Commande {
   devise: string;
   created_at: string;
   updated_at: string;
+  articles?: LigneCommande[];
   
   client?: Tiers;
   fournisseur?: Tiers;
@@ -23,6 +24,7 @@ export interface Commande {
   expedition?: Expedition;
   couts_logistiques?: CoutLogistique;
 }
+
 
 export interface LigneCommande {
   id: number;

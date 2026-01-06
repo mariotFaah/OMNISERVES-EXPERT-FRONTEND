@@ -9,11 +9,9 @@ import type {
 } from '../types';
 import api from '../../../core/config/axios';
 
-// Clés pour le localStorage
 const TOKEN_KEY = 'auth_token';
 const USER_KEY = 'auth_user';
 
-// ✅ DÉPLACER les méthodes de gestion du token en dehors de l'objet
 const getToken = (): string | null => {
   return localStorage.getItem(TOKEN_KEY);
 };
@@ -48,7 +46,6 @@ export const authApi = {
       const response = await api.post('/auth/login', credentials);
       
       if (response.data.success) {
-        // ✅ CORRECTION : Utiliser les fonctions directement, pas this.
         setAuthData(response.data.data.user, response.data.data.token);
       }
       
@@ -58,7 +55,6 @@ export const authApi = {
     }
   },
 
-  // ✅ RÉFÉRENCER les fonctions existantes
   getToken,
   setAuthData,
   getCurrentUser,
@@ -66,10 +62,9 @@ export const authApi = {
   isAuthenticated,
   getAuthHeaders,
 
-  // Validation du token (optionnelle)
   async validateToken(): Promise<ApiResponse<ValidateTokenResponse>> {
     try {
-      const token = getToken(); // ✅ Utiliser la fonction directement
+      const token = getToken(); 
       if (!token) {
         throw new Error('Aucun token disponible');
       }
@@ -83,8 +78,7 @@ export const authApi = {
     }
   },
 
-  // ✅ AJOUTER CES MÉTHODES POUR LA GESTION DES UTILISATEURS
-  // Récupérer tous les utilisateurs
+ 
   async getUsers(): Promise<ApiResponse<User[]>> {
     try {
       const response = await api.get('/auth/users');
