@@ -394,9 +394,7 @@
 }
 
 .shipping-info,
-.payment-terms {
-  space-y: 0.75rem;
-}
+
 
 .info-row,
 .term-item {
@@ -423,9 +421,6 @@
 }
 
 /* Documents */
-.documents-list {
-  space-y: 0.75rem;
-}
 
 .document-item {
   display: flex;
@@ -451,9 +446,7 @@
 }
 
 /* Coûts */
-.costs-breakdown {
-  space-y: 0.5rem;
-}
+
 
 .cost-item {
   display: flex;
