@@ -33,6 +33,8 @@ const extractObject = (response: any): any => {
   return response.data;
 };
 
+
+
 const parseTaux = (tauxChanges: any[]): TauxChange[] => {
   return tauxChanges.map(taux => ({
     ...taux,

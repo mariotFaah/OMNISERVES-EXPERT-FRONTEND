@@ -68,7 +68,7 @@ const DashboardComptabilitePage: React.FC = () => {
     paiementsMois: 0
   });
   const [periode, setPeriode] = useState<'semaine' | 'mois' | 'trimestre'>('mois');
-  const [loading, setLoading] = useState(true);
+  const [loading] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<string>('');
   const [error, setError] = useState<string>('');
 
@@ -78,7 +78,7 @@ const DashboardComptabilitePage: React.FC = () => {
 
   const chargerDonneesDashboard = async () => {
     try {
-      setLoading(true);
+     // setLoading(true);
       setError('');
       
       // Obtenir la date actuelle pour le mois en cours
@@ -227,7 +227,7 @@ const DashboardComptabilitePage: React.FC = () => {
       setRealData(fallbackRealData);
       
     } finally {
-      setLoading(false);
+      //setLoading(false);
     }
   };
 
@@ -263,7 +263,7 @@ const DashboardComptabilitePage: React.FC = () => {
     }
   };
 
-  if (loading) {
+  /*if (loading) {
     return (
       <div className="dashboard-comptabilite loading">
         <div className="loading-spinner">
@@ -272,7 +272,7 @@ const DashboardComptabilitePage: React.FC = () => {
         </div>
       </div>
     );
-  }
+  }*/
 
   return (
     <div className="dashboard-comptabilite">
