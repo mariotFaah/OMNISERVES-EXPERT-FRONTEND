@@ -26,7 +26,8 @@ import {
   FiPercent,
   FiTrendingUp,
   FiCheckCircle,
-  FiXCircle
+  FiXCircle,
+  FiHash
 } from 'react-icons/fi';
 import './FacturesListPage.css';
 
@@ -73,6 +74,7 @@ export const FacturesListPage: React.FC = () => {
       const searchLower = searchTerm.toLowerCase();
       return (
         facture.numero_facture?.toString().includes(searchLower) ||
+        facture.numero_complet?.toLowerCase().includes(searchLower) || // AJOUT: recherche par numero_complet
         facture.nom_tiers?.toLowerCase().includes(searchLower) ||
         (facture as any).numero_tiers?.toString().includes(searchLower)
       );
@@ -252,7 +254,7 @@ export const FacturesListPage: React.FC = () => {
             <div className="ms-crm-search-box">
               <input
                 type="text"
-                placeholder="N° facture, client, référence..."
+                placeholder="N° facture, numéro complet, client..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="ms-crm-search-input"
@@ -316,8 +318,8 @@ export const FacturesListPage: React.FC = () => {
                 <thead>
                   <tr>
                     <th className="ms-crm-table-header">
-                      <FiFileText className="table-header-icon" />
-                      <span>N° Facture</span>
+                      <FiHash className="table-header-icon" />
+                      <span>Numéro complet</span>
                     </th>
                     <th className="ms-crm-table-header">
                       <FiUser className="table-header-icon" />
@@ -359,9 +361,17 @@ export const FacturesListPage: React.FC = () => {
                       <tr key={facture.numero_facture} className={`ms-crm-table-row ${enRetard ? 'ms-crm-row-warning' : ''}`}>
                         <td className="ms-crm-table-cell">
                           <div className="ms-crm-facture-info">
-                            <div className="ms-crm-facture-number">
-                              {facture.numero_facture}
+                            {/* Numéro complet (format international) */}
+                            <div className="ms-crm-facture-numero-complet">
+                              {facture.numero_complet || `INV/XXXX/XXX`}
                             </div>
+                            
+                            {/* Référence simple */}
+                            <div className="ms-crm-facture-reference">
+                              Réf: #{facture.numero_facture}
+                            </div>
+                            
+                            {/* Devise */}
                             <div className="ms-crm-facture-devise">
                               {facture.devise}
                             </div>

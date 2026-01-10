@@ -148,6 +148,7 @@ export interface StockAlerte {
 
 export interface Facture {
   numero_facture?: number;
+  numero_complet?: string;
   date: string;
   type_facture: 'facture' | 'proforma' | 'avoir';
   id_tiers: number;
