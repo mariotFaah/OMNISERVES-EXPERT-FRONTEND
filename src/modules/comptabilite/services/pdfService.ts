@@ -57,12 +57,12 @@ class PDFService {
 
   private addHeader(doc: any, facture: Facture | FactureAvecPaiement, pageWidth: number, margin: number, yPosition: number): number {
     // Logo et informations entreprise
-    doc.setFontSize(16);
+    doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
     doc.text('OMNISERVE EXPERTS', margin, yPosition);
     yPosition += 7;
     
-    doc.setFontSize(10);
+    doc.setFontSize(9);
     doc.setFont('helvetica', 'normal');
     
     // Adresse de l'entreprise
@@ -80,9 +80,11 @@ class PDFService {
       avoir: 'AVOIR'
     };
 
-    doc.setFontSize(18);
+    doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
     const titre = `${typeLabels[facture.type_facture]} N° ${facture.numero_facture}`;
+    const numero_complet = `${facture.numero_complet || ''}`;
+    doc.text(numero_complet, margin, yPosition);
     doc.text(titre, pageWidth - margin, yPosition, { align: 'right' });
 
     yPosition += 15;
@@ -125,7 +127,7 @@ class PDFService {
       clientY += 1;
     });
 
-    // Informations facture (colonne de droite)
+    // Informations facture (colonne de droite) - AJUSTÉ POUR RAPPROCHER LES LABELS ET VALEURS
     const infoX = margin + columnWidth + 10;
     let infoY = yPosition;
 
@@ -162,8 +164,10 @@ class PDFService {
 
     infoY = yPosition;
     doc.setFont('helvetica', 'normal');
+    
+    // RAPPROCHER LES VALEURS DES LABELS (40 → 35 pour être plus proche)
     factureInfo.forEach(info => {
-      doc.text(info.value, infoX + 40, infoY);
+      doc.text(info.value, infoX + 35, infoY); // Changé de 40 à 35
       infoY += 6;
     });
 
@@ -195,11 +199,11 @@ class PDFService {
     const cols = {
       reference: margin + 3,
       description: margin + 25,
-      quantite: margin + 95,
-      prix: margin + 110,
-      remise: margin + 135,
-      tva: margin + 155,
-      total: margin + 175
+      quantite: margin + 75,
+      prix: margin + 90,
+      remise: margin + 115,
+      tva: margin + 135,
+      total: margin + 155
     };
 
     doc.text('Réf.', cols.reference, yPosition + 5);
@@ -444,10 +448,15 @@ class PDFService {
     if (isNaN(montant) || !isFinite(montant)) {
       return '0.00 Ar';
     }
-    return `${montant.toLocaleString('fr-FR', {
+    
+    // Formater avec un espace comme séparateur de milliers
+    const formatted = montant.toLocaleString('fr-FR', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
-    })} Ar`;
+    });
+    
+    // Remplacer le séparateur de milliers par un espace
+    return formatted.replace(/\s/g, ' ') + ' Ar';
   }
 
   // Méthodes publiques
@@ -465,12 +474,12 @@ class PDFService {
     let yPosition = 20;
 
     // En-tête
-    doc.setFontSize(16);
+    doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
     doc.text('LISTE DES FACTURES', margin, yPosition);
     yPosition += 10;
 
-    doc.setFontSize(10);
+    doc.setFontSize(9);
     doc.setFont('helvetica', 'normal');
     doc.text(`Généré le ${new Date().toLocaleDateString('fr-FR')}`, margin, yPosition);
     yPosition += 15;
@@ -521,7 +530,7 @@ class PDFService {
     let yPosition = 20;
 
     // En-tête
-    doc.setFontSize(16);
+    doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
     doc.text('RAPPORT TVA', margin, yPosition);
     yPosition += 10;
@@ -566,7 +575,7 @@ class PDFService {
     let yPosition = 20;
 
     // En-tête
-    doc.setFontSize(16);
+    doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
     doc.text('RAPPORT TRÉSORERIE', margin, yPosition);
     yPosition += 10;

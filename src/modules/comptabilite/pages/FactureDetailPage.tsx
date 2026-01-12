@@ -444,6 +444,12 @@ export const FactureDetailPage: React.FC = () => {
           </div>
           <div className="sage-card-content sage-metadata-grid">
             <div className="sage-metadata-item">
+              <div className="sage-metadata-label">Numéro complet</div>
+              <div className="sage-metadata-value sage-document-number-complet">
+                {facture.numero_complet || `INV/${facture.numero_facture}/XXXX`}
+              </div>
+            </div>
+            <div className="sage-metadata-item">
               <div className="sage-metadata-label">Numéro</div>
               <div className="sage-metadata-value sage-document-number">
                 #{facture.numero_facture}
